@@ -1,0 +1,14 @@
+// win
+.pw-container.colorpicker {
+    .pw-win {
+        @media (min-width:0) {width: 100%;}
+        @media (min-width:1000px) {width: 400px;}    
+        margin: auto; 
+        .pw-head {
+            .pw-title::before {content: "\f53f";}
+        }
+        .pw-main {
+            .sketch-picker {box-shadow: none; padding: 0;}
+        }
+    }
+}

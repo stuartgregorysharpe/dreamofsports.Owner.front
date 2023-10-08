@@ -1,0 +1,51 @@
+.dp-date {
+    background-color: var(--color-highlight1); height: 40px; display: inline-flex; align-items: center; padding:0 15px; border-radius: 20px; color: var(--color-grey2); cursor: pointer; white-space: nowrap; overflow: hidden; user-select: none;
+    &:hover {background-color: var(--color-highlight2);}    
+    .dpd-value::before {font-family: "fa-regular"; margin-right: 5px; content: "\f073";}        
+    .dpd-reset {
+        margin-left: 5px;
+        &::before {font-family: "fa-regular"; content: "\f057";}
+    }
+}
+.dp-ovl {
+    display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+    &.active {display: block;}
+}
+.dp-calendar {
+    position: fixed; z-index: 1001; display: none; padding: 15px; background-color: white; box-shadow: var(--shadow-popup); border-radius: 5px; user-select: none;
+    &.active {display: block;}
+    .dp-head {
+        display: flex; justify-content: space-between; align-items: center; height: 30px; margin-bottom: 15px; font-size: 14px;
+        .dp-currentmonthdash { 
+            display: flex; align-items: center;
+            .dp-currentmonth {text-transform: capitalize; font-weight: 500; margin-inline-end: 5px;}            
+        }
+        .dp-monthdash {display: flex;}           
+    }
+    .dp-days {
+        margin-bottom: 15px; height: 222px;
+        .dp-days-content {
+            display: grid; grid-template-columns: repeat(7, 30px); gap: 2px; font-size: 12px; 
+            div {
+                height: 30px; border-radius: 15px; display: flex; align-items: center; justify-content: center;
+                &.head {color: var(--color-grey2); text-transform: capitalize;}
+                &.day {
+                    cursor: pointer; 
+                    &:hover {background-color: var(--color-grey5);}
+                    &.hidden {opacity: 0; pointer-events: none;}
+                    &.current {background-color: var(--color-violet-medium); color: white;}
+                    &.holiday {
+                        color: var(--color-red);
+                        &.current {color: white;}
+                    }
+                    &.now {font-weight: bold;}
+                }                    
+            }
+        }                
+    } 
+    .dp-time {height: 30px; margin-bottom: 15px;}
+    .dp-foot {
+        height: 30px; display: flex; justify-content: flex-end;
+        button {height: 30px; padding: 0 15px; border-radius: 15px;}
+    }
+}

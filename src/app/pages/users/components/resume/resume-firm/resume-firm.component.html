@@ -1,0 +1,64 @@
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['firms-name']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.firm.translation(selectedLang.id).name" [class.error]="errors.name"></div>            
+    <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('branch')">{{thelang.words['firms-branch']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.firm.translation(selectedLang.id).branch" [class.error]="errors.branch"></div>            
+    <div class="gfp-error" *ngIf="errors.branch">{{thelang.words[errors.branch]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('founder')">{{thelang.words['firms-founder']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.firm.translation(selectedLang.id).founder" [class.error]="errors.founder"></div>            
+    <div class="gfp-error" *ngIf="errors.founder">{{thelang.words[errors.founder]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('about')">{{thelang.words['firms-about']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><textarea [dir]="selectedLang.dir" [(ngModel)]="x.firm.translation(selectedLang.id).about" [class.error]="errors.about"></textarea></div>    
+    <div class="gfp-error" *ngIf="errors.about">{{thelang.words[errors.about]}}</div>           
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('img')">{{thelang.words['firms-img']}}</label></div>
+    <div class="gfp-inputwrap"><image-picker folder="users" [supabase]="true" [(img)]="x.firm.img" [error]="errors.img"></image-picker></div>
+    <div class="gfp-error" *ngIf="errors.img">{{thelang.words[errors.img]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('reg_no')">{{thelang.words['firms-reg-no']}}</label></div>
+    <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.firm.reg_no" [class.error]="errors.reg_no"></div>
+    <div class="gfp-error" *ngIf="errors.reg_no">{{thelang.words[errors.reg_no]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label>{{thelang.words['firms-reg-date']}}</label></div>
+    <div class="gfp-inputwrap"><date-picker [(value)]="x.firm.reg_date" [resetable]="true" [resetvalue]="null"></date-picker></div>            
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('reg_country_id')">{{thelang.words['firms-reg-country']}}</label></div>
+    <div class="gfp-inputwrap">
+        <div class="inputwithbtns">
+            <select-simple [(value)]="x.firm.reg_country_id" field="code" sortBy="code" entity="country" [useSearch]="true" [useNull]="true" [error]="errors.reg_country_id"></select-simple>
+            <div *ngIf="x.firm.reg_country_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/localization/countries/edit/{{x.firm.reg_country_id}}"><span></span></a></div>
+        </div>
+    </div>
+    <div class="gfp-error" *ngIf="errors.reg_country_id">{{thelang.words[errors.reg_country_id]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('reg_addr')">{{thelang.words['firms-reg-addr']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.firm.translation(selectedLang.id).reg_addr" [class.error]="errors.reg_addr"></div>            
+    <div class="gfp-error" *ngIf="errors.reg_addr">{{thelang.words[errors.reg_addr]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('fact_country_id')">{{thelang.words['firms-fact-country']}}</label></div>
+    <div class="gfp-inputwrap">
+        <div class="inputwithbtns">
+            <select-simple [(value)]="x.firm.fact_country_id" field="code" sortBy="code" entity="country" [useSearch]="true" [useNull]="true" [error]="errors.fact_country_id"></select-simple>
+            <div *ngIf="x.firm.fact_country_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/localization/countries/edit/{{x.firm.fact_country_id}}"><span></span></a></div>
+        </div>
+    </div>
+    <div class="gfp-error" *ngIf="errors.fact_country_id">{{thelang.words[errors.fact_country_id]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('fact_addr')">{{thelang.words['firms-fact-addr']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.firm.translation(selectedLang.id).fact_addr" [class.error]="errors.fact_addr"></div>            
+    <div class="gfp-error" *ngIf="errors.fact_addr">{{thelang.words[errors.fact_addr]}}</div>
+</div>

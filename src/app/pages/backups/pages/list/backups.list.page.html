@@ -1,0 +1,49 @@
+<div class="page-head">    
+    <div class="ph-title">
+        <div class="ph-h1">{{thelang.words["backups-head"]}}</div>
+        <div class="ph-h2">{{thelang.words["common-length"]}}: {{elementsQuantity}}</div>    
+    </div>   
+    <div class="ph-dash" *ngIf="ready">
+        <div class="ph-btn roundbtn violet create" (click)="create()" [title]="thelang.words['common-create']"><span></span></div>
+        <div class="ph-btn roundbtn red delete" [class.disabled]="!canDeleteBulk" (click)="deleteBulk()" [title]="thelang.words['common-deleteselected']"><span></span></div>        
+    </div>
+    <div class="ph-loader" [class.active]="!ready || reloading"></div> 
+</div>
+
+<div class="list">
+    <div class="l-wrap">
+        <ng-container *ngIf="ready">
+            <div class="note"><span>{{thelang.words['backups-note']}}</span></div>
+            <table>
+                <tr class="no-selection">
+                    <th class="compact"><check-box [(value)]="allSelected" (valueChange)="onSelectAll()"></check-box></th>                        
+                    <th class="compact"><label [class.sorted-forward]="sortBy === 'id' && sortDir === 1" [class.sorted-backward]="sortBy === 'id' && sortDir === -1" (click)="changeSorting('id')">ID</label></th>
+                    <th><label [class.sorted-forward]="sortBy === 'created_at' && sortDir === 1" [class.sorted-backward]="sortBy === 'created_at' && sortDir === -1" (click)="changeSorting('created_at')">{{thelang.words['backups-created-at']}}</label></th>
+                    <th>{{thelang.words['backups-type']}}</th>
+                    <th>{{thelang.words['backups-ready']}}</th>
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>  
+                <ng-container *ngIf="xl.length">
+                    <tr *ngFor="let x of xl">
+                        <td><check-box *ngIf="!x.defended && x.ready" [(value)]="x.__selected" (valueChange)="onSelect()"></check-box></td>
+                        <td>{{x.id}}</td>
+                        <td>{{x.formattedDate('created_at', true)}}</td>    
+                        <td>{{thelang.words['backups-type-'+x.type]}}</td>
+                        <td>{{x.ready ? thelang.words['common-yes'] : thelang.words['common-no']}}</td>                    
+                        <td>
+                            <div class="l-actions" *ngIf="x.ready">                                    
+                                <a class="roundbtn download" [title]="thelang.words['common-download']" href="{{backupUrl}}/{{x.filename}}" target="_blank"><span></span></a>                                
+                                <a class="roundbtn danger delete" [title]="thelang.words['common-delete']" *ngIf="!x.defended" (click)="delete(x.id)"><span></span></a>                                
+                            </div>
+                        </td>
+                    </tr>                            
+                </ng-container> 
+                <ng-container *ngIf="!xl.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>                    
+            </table>  
+        </ng-container>                       
+    </div>
+    <div class="l-foot"><pagination [n]="pagesQuantity" [(current)]="part" (currentChange)="initList(true)"></pagination></div>    
+    <div class="l-loading" [class.active]="reloading"></div>  
+</div>

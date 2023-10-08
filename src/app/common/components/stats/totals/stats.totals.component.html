@@ -1,0 +1,22 @@
+<div class="stats-totals">
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-users']}}</div>
+        <div class="st-value">{{data.users}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-athlets']}}</div>
+        <div class="st-value">{{data.athlets}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-firms']}}</div>
+        <div class="st-value">{{data.firms}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-payments-q']}}</div>
+        <div class="st-value">{{data.payments_q}}</div>
+    </div>
+    <div class="st-item" *ngIf="showAmount">
+        <div class="st-title">{{thelang.words['stats-payments-amount']}}</div>
+        <div class="st-value">{{data.payments_amount}} USD</div>
+    </div>
+</div>

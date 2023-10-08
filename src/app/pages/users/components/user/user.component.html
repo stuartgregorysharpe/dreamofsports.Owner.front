@@ -1,0 +1,266 @@
+<ul class="de-tabs">
+    <li class="profile" [class.active]="tab === 1" (click)="tab = 1;"><span>{{thelang.words['users-tab-profile']}}</span></li>
+    <li class="resume" [class.active]="tab === 2" (click)="tab = 2;"><span>{{thelang.words['users-tab-resume']}}</span></li>
+    <li *ngIf="x.type === 'athlet'" class="rewards" [class.active]="tab === 3" (click)="tab = 3;"><span>{{thelang.words['users-tab-rewards']}}</span></li>
+    <li class="contacts" [class.active]="tab === 4" (click)="tab = 4;"><span>{{thelang.words['users-tab-phones']}}</span></li>
+    <li class="contacts" [class.active]="tab === 5" (click)="tab = 5;"><span>{{thelang.words['users-tab-emails']}}</span></li>
+    <li class="contacts" [class.active]="tab === 6" (click)="tab = 6;"><span>{{thelang.words['users-tab-links']}}</span></li>
+    <li class="contacts" [class.active]="tab === 7" (click)="tab = 7;"><span>{{thelang.words['users-tab-socials']}}</span></li>    
+    <li class="images" [class.active]="tab === 8" (click)="tab = 8;"><span>{{thelang.words['users-tab-files-images']}}</span></li>
+    <li class="videos" [class.active]="tab === 9" (click)="tab = 9;"><span>{{thelang.words['users-tab-files-videos']}}</span></li>
+    <li class="files" [class.active]="tab === 10" (click)="tab = 10;"><span>{{thelang.words['users-tab-files-others']}}</span></li>
+</ul>
+
+<!-- tab 1 -->
+<ng-container *ngIf="tab === 1">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-profile']}}</div>    
+    <div class="generic-form">
+        <div class="gf-param b-margined3" *ngIf="x.id">
+            <div class="gfp-title b-margined1"><label>ID</label></div>
+            <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+        </div>
+        <div class="gf-param b-margined3" *ngIf="x.id">
+            <div class="gfp-title b-margined1"><label>{{thelang.words['users-created-at']}}</label></div>
+            <div class="gfp-inputwrap"><input type="text" [value]="x.formattedDate('created_at', true)" disabled></div>
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label>{{thelang.words['users-type']}}</label></div>
+            <div class="gfp-inputwrap">
+                <div class="selectwrap">
+                    <select [(ngModel)]="x.type">
+                        <option value="athlet">{{thelang.words['users-type-athlet']}}</option>
+                        <option value="firm">{{thelang.words['users-type-firm']}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label [class.required]="isRequired('email')">{{thelang.words['users-email']}}</label></div>
+            <div class="gfp-inputwrap"><input type="email" [(ngModel)]="x.email" [class.error]="errors.email"></div>
+            <div class="gfp-error" *ngIf="errors.email">{{thelang.words[errors.email]}}</div>
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label [class.required]="isRequired('password')">{{thelang.words['users-password']}}</label></div>
+            <div class="gfp-inputwrap"><input type="password" [(ngModel)]="x.password" [placeholder]="x.id ? thelang.words['users-password-ph'] : ''" [class.error]="errors.password"></div>
+            <div class="gfp-error" *ngIf="errors.password">{{thelang.words[errors.password]}}</div>
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label [class.required]="isRequired('lang_id')">{{thelang.words['users-lang']}}</label></div>
+            <div class="gfp-inputwrap">
+                <div class="inputwithbtns">
+                    <select-simple [(value)]="x.lang_id" field="title" entity="lang" [useSearch]="false" [useNull]="false" [error]="errors.lang_id"></select-simple>
+                    <div *ngIf="x.lang_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/localization/langs/edit/{{x.lang_id}}"><span></span></a></div>
+                </div>                
+            </div>
+            <div class="gfp-error" *ngIf="errors.lang_id">{{thelang.words[errors.lang_id]}}</div>
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label>{{thelang.words['users-payed-at']}}</label></div>
+            <div class="gfp-inputwrap"><timestamp-picker [(value)]="x.payed_at" [resetable]="true" [resetvalue]="null"></timestamp-picker></div>            
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label>{{thelang.words['users-payed-until']}}</label></div>
+            <div class="gfp-inputwrap"><timestamp-picker [(value)]="x.payed_until" [resetable]="true" [resetvalue]="null"></timestamp-picker></div>            
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label>{{thelang.words['users-active']}}</label></div>
+            <div class="gfp-inputwrap"><check-box [(value)]="x.active"></check-box></div>
+        </div>
+        <div class="gf-param">
+            <div class="gfp-title b-margined1"><label>{{thelang.words['users-filled']}}</label></div>
+            <div class="gfp-inputwrap"><check-box [(value)]="x.filled"></check-box></div>
+        </div>
+    </div>    
+</ng-container>
+
+<!-- tab 2 -->
+<ng-container *ngIf="tab === 2">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-resume']}}</div>
+    <div class="b-margined3">
+        <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+    </div>
+    <div class="generic-form">
+        <resume-athlet *ngIf="x.type === 'athlet'" [x]="x" [requiredFields]="requiredFields" [errors]="requiredFields" [selectedLang]="selectedLang"></resume-athlet>
+        <resume-firm *ngIf="x.type === 'firm'" [x]="x" [requiredFields]="requiredFields" [errors]="requiredFields" [selectedLang]="selectedLang"></resume-firm>
+    </div>
+</ng-container>
+
+<!-- tab 3 -->
+<ng-container *ngIf="tab === 3">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-rewards']}}</div>
+    <div class="b-margined3">
+        <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash b-margined3"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="rewardsAdd()"><span></span></div></div>
+    <!-- list -->
+    <div class="list inner b-margined3">
+        <div class="l-wrap">
+            <table>
+                <tr class="no-selection">  
+                    <th><label [class.sorted-forward]="rewardsSortBy === 'date' && rewardsSortDir === 1" [class.sorted-backward]="rewardsSortBy === 'date' && rewardsSortDir === -1" (click)="rewardsChangeSorting('date');">{{thelang.words['athlets-rewards-date']}}</label></th>            
+                    <th>{{thelang.words['athlets-rewards-img']}}</th>                    
+                    <th>{{thelang.words['athlets-rewards-name']}}</th>
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>
+                <ng-container *ngIf="x.athlet.rewards.length">
+                    <tr *ngFor="let r of x.athlet.rewards; let i = index;">      
+                        <td><date-picker [(value)]="r.date" [resetable]="false"></date-picker></td>
+                        <td><image-picker folder="users" [supabase]="true" [(img)]="r.img"></image-picker></td>                        
+                        <td><input type="text" [dir]="selectedLang.dir" [(ngModel)]="r.translation(selectedLang.id).name"></td>
+                        <td><div class="l-actions"><div class="roundbtn danger delete" [title]="thelang.words['common-delete']" (click)="rewardsDelete(i);"><span></span></div></div></td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="!x.athlet.rewards.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>
+            </table>
+        </div>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="rewardsAdd()"><span></span></div></div>
+</ng-container>
+
+<!-- tab 4 -->
+<ng-container *ngIf="tab === 4">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-phones']}}</div>
+    <!-- btns --> 
+    <div class="de-dash b-margined3"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="phonesAdd()"><span></span></div></div>
+    <!-- list -->
+    <div class="list inner b-margined3">
+        <div class="l-wrap">
+            <table>
+                <tr class="no-selection">            
+                    <th>{{thelang.words['users-phones-value']}}</th>
+                    <th><label [class.sorted-forward]="phonesSortBy === 'pos' && phonesSortDir === 1" [class.sorted-backward]="phonesSortBy === 'pos' && phonesSortDir === -1" (click)="phonesChangeSorting('pos');">{{thelang.words['users-phones-pos']}}</label></th>            
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>  
+                <ng-container *ngIf="x.phones.length">
+                    <tr *ngFor="let c of x.phones; let i = index;">                        
+                        <td><input type="text" [(ngModel)]="c.value"></td>
+                        <td><input class="small" type="number" [(ngModel)]="c.pos"></td>            
+                        <td><div class="l-actions"><div class="roundbtn danger delete" [title]="thelang.words['common-delete']" (click)="phonesDelete(i);"><span></span></div></div></td>
+                    </tr>                            
+                </ng-container>
+                <ng-container *ngIf="!x.phones.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>  
+            </table>
+        </div>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="phonesAdd()"><span></span></div></div>
+</ng-container>
+
+<!-- tab 5 -->
+<ng-container *ngIf="tab === 5">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-emails']}}</div>
+    <!-- btns --> 
+    <div class="de-dash b-margined3"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="emailsAdd()"><span></span></div></div>
+    <!-- list -->
+    <div class="list inner b-margined3">
+        <div class="l-wrap">
+            <table>
+                <tr class="no-selection">            
+                    <th>{{thelang.words['users-emails-value']}}</th>
+                    <th><label [class.sorted-forward]="emailsSortBy === 'pos' && emailsSortDir === 1" [class.sorted-backward]="emailsSortBy === 'pos' && emailsSortDir === -1" (click)="emailsChangeSorting('pos');">{{thelang.words['users-emails-pos']}}</label></th>            
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>  
+                <ng-container *ngIf="x.emails.length">
+                    <tr *ngFor="let c of x.emails; let i = index;">                        
+                        <td><input type="text" [(ngModel)]="c.value"></td>
+                        <td><input class="small" type="number" [(ngModel)]="c.pos"></td>            
+                        <td><div class="l-actions"><div class="roundbtn danger delete" [title]="thelang.words['common-delete']" (click)="emailsDelete(i);"><span></span></div></div></td>
+                    </tr>                            
+                </ng-container>
+                <ng-container *ngIf="!x.emails.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>  
+            </table>
+        </div>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="emailsAdd()"><span></span></div></div>
+</ng-container>
+
+<!-- tab 6 -->
+<ng-container *ngIf="tab === 6">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-links']}}</div>
+    <!-- btns --> 
+    <div class="de-dash b-margined3"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="linksAdd()"><span></span></div></div>
+    <!-- list -->
+    <div class="list inner b-margined3">
+        <div class="l-wrap">
+            <table>
+                <tr class="no-selection">            
+                    <th>{{thelang.words['users-links-value']}}</th>
+                    <th><label [class.sorted-forward]="linksSortBy === 'pos' && linksSortDir === 1" [class.sorted-backward]="linksSortBy === 'pos' && linksSortDir === -1" (click)="linksChangeSorting('pos');">{{thelang.words['users-links-pos']}}</label></th>            
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>  
+                <ng-container *ngIf="x.links.length">
+                    <tr *ngFor="let c of x.links; let i = index;">                        
+                        <td><input type="text" [(ngModel)]="c.value"></td>
+                        <td><input class="small" type="number" [(ngModel)]="c.pos"></td>            
+                        <td><div class="l-actions"><div class="roundbtn danger delete" [title]="thelang.words['common-delete']" (click)="linksDelete(i);"><span></span></div></div></td>
+                    </tr>                            
+                </ng-container>
+                <ng-container *ngIf="!x.links.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>  
+            </table>
+        </div>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="linksAdd()"><span></span></div></div>
+</ng-container>
+
+<!-- tab 7 -->
+<ng-container *ngIf="tab === 7">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-socials']}}</div>
+    <!-- btns --> 
+    <div class="de-dash b-margined3"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="socialsAdd()"><span></span></div></div>
+    <!-- list -->
+    <div class="list inner b-margined3">
+        <div class="l-wrap">
+            <table>
+                <tr class="no-selection">            
+                    <th>{{thelang.words['users-socials-social']}}</th>
+                    <th>{{thelang.words['users-socials-value']}}</th>
+                    <th><label [class.sorted-forward]="socialsSortBy === 'pos' && socialsSortDir === 1" [class.sorted-backward]="socialsSortBy === 'pos' && socialsSortDir === -1" (click)="socialsChangeSorting('pos');">{{thelang.words['users-socials-pos']}}</label></th>            
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>  
+                <ng-container *ngIf="x.socials.length">
+                    <tr *ngFor="let c of x.socials; let i = index;">     
+                        <td><select-simple [(value)]="c.social_id" field="name" sortBy="name" entity="social" [useNull]="!c.id"></select-simple></td>                   
+                        <td><input type="text" [(ngModel)]="c.value"></td>
+                        <td><input class="small" type="number" [(ngModel)]="c.pos"></td>            
+                        <td><div class="l-actions"><div class="roundbtn danger delete" [title]="thelang.words['common-delete']" (click)="socialsDelete(i);"><span></span></div></div></td>
+                    </tr>                            
+                </ng-container>
+                <ng-container *ngIf="!x.socials.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>  
+            </table>
+        </div>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash"><div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="socialsAdd()"><span></span></div></div>
+</ng-container>
+
+<!-- tab 8 -->
+<ng-container *ngIf="tab === 8">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-files-images']}}</div>
+    <file-list type="images" folder="users" [supabase]="true" [data]="x.images"></file-list>
+</ng-container>
+
+<!-- tab 9 -->
+<ng-container *ngIf="tab === 9">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-files-videos']}}</div>
+    <file-list type="videos" folder="users" [supabase]="true" [data]="x.videos"></file-list>
+</ng-container>
+
+<!-- tab 10 -->
+<ng-container *ngIf="tab === 10">
+    <div class="de-head b-margined3">{{thelang.words['users-tab-files-others']}}</div>
+    <file-list type="others" folder="users" [supabase]="true" [data]="x.others"></file-list>
+</ng-container>

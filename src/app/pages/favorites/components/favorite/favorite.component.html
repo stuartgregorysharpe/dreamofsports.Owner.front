@@ -1,0 +1,26 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('user_id')">{{thelang.words['favorites-user']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="inputwithbtns">
+                <select-simple [(value)]="x.user_id" field="email" sortBy="email" entity="user" [useSearch]="true" [useNull]="true" [error]="errors.user_id"></select-simple>
+                <div *ngIf="x.user_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/catalogue/users/edit/{{x.user_id}}"><span></span></a></div>
+            </div>
+        </div>
+        <div class="gfp-error" *ngIf="errors.user_id">{{thelang.words[errors.user_id]}}</div>
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('favorite_id')">{{thelang.words['favorites-favorite']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="inputwithbtns">
+                <select-simple [(value)]="x.favorite_id" field="email" sortBy="email" entity="user" [useSearch]="true" [useNull]="true" [error]="errors.favorite_id"></select-simple>
+                <div *ngIf="x.favorite_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/catalogue/users/edit/{{x.favorite_id}}"><span></span></a></div>
+            </div>
+        </div>
+        <div class="gfp-error" *ngIf="errors.favorite_id">{{thelang.words[errors.favorite_id]}}</div>
+    </div>    
+</div>

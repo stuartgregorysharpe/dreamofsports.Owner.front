@@ -1,0 +1,6 @@
+.monitor-wrap {
+    @media (min-width:0) {display: none;}
+    @media (min-width:1000px) {display: block;}  
+    overflow: hidden; width:450px; height: 45px; border:1px var(--color-grey5) solid; border-radius: 5px;
+    .monitor {height: 100%; width: calc(100% + 20px); padding: 0 20px 0 5px; overflow-x: hidden; overflow-y: scroll; font-size: 10px; color: var(--color-grey3); background-color: var(--color-bg-dark);} 
+}

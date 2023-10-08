@@ -1,0 +1,36 @@
+export const cfg = {
+    apiUrl: "https://back.dream-of-sports.com/api/owner",
+    staticUrl: "https://static.dream-of-sports.com",
+    backupUrl: "https://backup.dream-of-sports.com",
+    supabaseUrl: "https://qqqjpngdspwjtashdlsa.supabase.co/storage/v1/object/public",
+    maxImageFileSize: 10000000,
+    maxVideoFileSize: 50000000,
+    maxOtherFileSize: 10000000,
+    maxAnyFileSize: 10000000,
+    allowedImageTypes: [
+        "image/jpeg", 
+        "image/png",
+        "image/gif",
+        "image/svg+xml",
+    ],
+    allowedVideoTypes: [
+        "video/mp4", 
+    ],
+    allowedOtherTypes: [
+        "text/plain",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/msword",
+        "application/pdf",
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ], 
+    editorCfg: {
+        branding:false,             
+        height: 350,             
+        menubar:false, 
+        plugins: ["table", "link"],
+        toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link', 
+        relative_urls: false,
+        extended_valid_elements: "a[href|hrefmob|target|class]",
+    },
+};

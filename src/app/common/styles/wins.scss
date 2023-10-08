@@ -1,0 +1,47 @@
+// чтобы применить backdrop-filter, пришлось вытянуть этот слой отдельно, 
+// потому что filter, backdrop-filter, transform разрушают position:fixed для внутренних элементов (они превращаются в absolute)
+.pw-overlay {
+    @media (min-width:0) {backdrop-filter: none;}
+    @media (min-width:1000px) {backdrop-filter: blur(2px);}
+    position: fixed; z-index: 100; left: 100%; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); transition: 0.3s;
+    &.active {left: 0;}
+}
+.pw-container {
+    @media (min-width:0) {padding: 15px;}
+    @media (min-width:1000px) {padding: 30px;}
+    position: fixed; z-index: 101; left: 100%; top: 0; width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; transition: 0.3s; display: flex;
+    &.active {left: 0;}
+    .pw-win {
+        // sizes and margins must be set in inner styles!
+        box-shadow: var(--shadow-win); background-color: white; border-radius: 15px; position: relative;
+        .pw-loading { // must be last in html, if we dont want to set z-index implicitly  
+            position: absolute; left: 0; top:0; width: 0; height: 100%; background-color: var(--color-white-transparent2); border-radius: 15px; opacity: 0; transition: opacity 0.3s ease 0s, width 0s linear 0.3s;
+            &.active {width: 100%; opacity: 1; transition: opacity 0.3s ease 0.001s, width 0s;}
+        }
+        .pw-head {
+            @media (min-width:0) {padding: 0 15px; height: 70px;}
+            @media (min-width:1000px) {padding: 0 25px; height: 80px;}
+            display: flex; justify-content: space-between; align-items: center; 
+            .pw-title {
+                font-size: 18px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                &::before {font-family: "fa-regular"; margin-right: 15px;}
+            }
+            .pw-close {
+                margin-left: 15px;
+                span::before {content: "\f00d";}
+            }
+        }
+        .pw-main {
+            &.padded {
+                @media (min-width:0) {padding: 0 15px 15px 15px;}
+                @media (min-width:1000px) {padding: 0 25px 20px 25px; }                                                    
+            }            
+        }
+        .pw-foot {            
+            @media (min-width:0) {padding: 0 15px; height: 70px;}
+            @media (min-width:1000px) {padding: 0 25px; height: 80px;}
+            background-color: var(--color-bg-light); border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; display: flex; align-items: center; justify-content: space-between;
+            button {height: 40px; padding: 0 15px; border-radius: 20px;}
+        }
+    }
+}

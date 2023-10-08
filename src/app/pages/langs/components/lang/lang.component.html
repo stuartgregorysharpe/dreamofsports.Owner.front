@@ -1,0 +1,61 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('slug')">{{thelang.words['langs-slug']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" class="small" [(ngModel)]="x.slug" [class.error]="errors.slug"></div>
+        <div class="gfp-error" *ngIf="errors.slug">{{thelang.words[errors.slug]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('title')">{{thelang.words['langs-title']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [dir]="x.dir" [(ngModel)]="x.title" [class.error]="errors.title"></div>
+        <div class="gfp-error" *ngIf="errors.title">{{thelang.words[errors.title]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('shorttitle')">{{thelang.words['langs-shorttitle']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.shorttitle" [class.error]="errors.shorttitle"></div>
+        <div class="gfp-error" *ngIf="errors.shorttitle">{{thelang.words[errors.shorttitle]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('img')">{{thelang.words['langs-img']}}</label></div>
+        <div class="gfp-inputwrap"><image-picker folder="langs" [(img)]="x.img" [error]="errors.img"></image-picker></div>
+        <div class="gfp-error" *ngIf="errors.img">{{thelang.words[errors.img]}}</div>
+    </div>    
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('dir')">{{thelang.words['langs-dir']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="selectwrap">
+                <select [(ngModel)]="x.dir">
+                    <option value="ltr">LTR</option>
+                    <option value="rtl">RTL</option>
+                </select>
+            </div>
+        </div>    
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('dateformat')">{{thelang.words['langs-dateformat']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="selectwrap">
+                <select [(ngModel)]="x.dateformat">
+                    <option value="en">EN-like (mm/dd/yyyy)</option>
+                    <option value="ru">RU-like (dd.mm.yyyy)</option>
+                </select>
+            </div>
+        </div>    
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('pos')">{{thelang.words['langs-pos']}}</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.pos" [disabled]="x.defended" [class.error]="errors.pos"></div> 
+        <div class="gfp-error" *ngIf="errors.pos">{{thelang.words[errors.pos]}}</div>   
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['langs-slugable']}}</label></div>
+        <div class="gfp-inputwrap"><check-box [(value)]="x.slugable"></check-box></div>
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['langs-active']}}</label></div>
+        <div class="gfp-inputwrap"><check-box [(value)]="x.active" [disabled]="x.defended"></check-box></div>
+    </div>
+</div>

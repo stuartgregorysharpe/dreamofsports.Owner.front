@@ -1,0 +1,25 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['messages-created-at']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [value]="x.formattedDate('created_at', true)" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['messages-name']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.name" [class.error]="errors.name" disabled></div>   
+        <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>         
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('email')">{{thelang.words['messages-email']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.email" [class.error]="errors.email" disabled></div>   
+        <div class="gfp-error" *ngIf="errors.email">{{thelang.words[errors.email]}}</div>         
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('content')">{{thelang.words['messages-content']}}</label></div>
+        <div class="gfp-inputwrap"><textarea [(ngModel)]="x.content" [class.error]="errors.content" disabled></textarea></div>   
+        <div class="gfp-error" *ngIf="errors.content">{{thelang.words[errors.content]}}</div>         
+    </div>
+</div>

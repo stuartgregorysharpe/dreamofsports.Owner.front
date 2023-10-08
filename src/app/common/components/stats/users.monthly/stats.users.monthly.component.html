@@ -1,0 +1,39 @@
+<div class="graph-columns">
+    <div class="gc-params">
+        <div class="gc-param">
+            <div class="gcp-title">{{thelang.words['common-year']}}:</div>
+            <div class="gcp-value">
+                <div class="selectwrap">
+                    <select [(ngModel)]="year" (change)="initStats()">
+                        <option *ngFor="let y of years" [ngValue]="y">{{y}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="gc-main">
+        <div class="gc-max">{{max}}</div>
+        <div class="gc-columns">
+            <div class="gcc-item" *ngFor="let m of months">
+                <div class="gcc-title">{{m}}</div>
+                <div class="gcc-column col1" [style.height]="height(users[m-1])" [style.transition-delay]="0.1*m+'s'"><div class="gccc-fill" [title]="users[m-1]" [style.background-color]="color(0)"></div></div>
+                <div class="gcc-column col2" [style.height]="height(athlets[m-1])" [style.transition-delay]="0.1*m+'s'"><div class="gccc-fill" [title]="athlets[m-1]" [style.background-color]="color(1)"></div></div>
+                <div class="gcc-column col3" [style.height]="height(firms[m-1])" [style.transition-delay]="0.1*m+'s'"><div class="gccc-fill" [title]="firms[m-1]" [style.background-color]="color(2)"></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="gc-legend">
+        <div class="gcl-item">
+            <div class="gcl-mark" [style.background-color]="color(0)"></div>
+            <div class="gcl-title">{{thelang.words['stats-users']}}</div> 
+        </div>
+        <div class="gcl-item">
+            <div class="gcl-mark" [style.background-color]="color(1)"></div>
+            <div class="gcl-title">{{thelang.words['stats-athlets']}}</div> 
+        </div>
+        <div class="gcl-item">
+            <div class="gcl-mark" [style.background-color]="color(2)"></div>
+            <div class="gcl-title">{{thelang.words['stats-firms']}}</div> 
+        </div>        
+    </div>
+</div>

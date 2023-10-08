@@ -1,0 +1,31 @@
+<div class="generic-form">        
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('load_to')">{{thelang.words['files-loadto']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="selectwrap">
+                <select [(ngModel)]="x.load_to">
+                    <option value="none">{{thelang.words['files-loadto-none']}}</option>
+                    <option value="all">{{thelang.words['files-loadto-all']}}</option>
+                    <option value="mainsite">{{thelang.words['files-loadto-mainsite']}}</option>
+                </select>
+            </div>                
+        </div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('mark')">{{thelang.words['files-mark']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.mark" [class.error]="errors.mark" [disabled]="x.defended"></div>
+        <div class="gfp-error" *ngIf="errors.mark">{{thelang.words[errors.mark]}}</div>
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('fileurl')">{{thelang.words['files-file']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div *ngIf="x.fileurl" class="b-margined1"><file-link [fileurl]="x.fileurl" [filename]="x.filename" [filetype]="x.filetype"></file-link></div>
+            <file-picker [(file)]="x" [error]="errors.file"></file-picker>
+        </div>    
+        <div class="gfp-error" *ngIf="errors.fileurl">{{thelang.words[errors.fileurl]}}</div>
+    </div>
+</div>

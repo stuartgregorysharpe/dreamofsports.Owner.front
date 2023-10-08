@@ -1,0 +1,37 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['payments-created-at']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [value]="x.formattedDate('created_at', true)" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('outer_id')">{{thelang.words['payments-outer-id']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.outer_id" [class.error]="errors.outer_id" disabled></div>   
+        <div class="gfp-error" *ngIf="errors.outer_id">{{thelang.words[errors.outer_id]}}</div>         
+    </div>  
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('user_email')">{{thelang.words['payments-user-email']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.user_email" [class.error]="errors.user_email" disabled></div>   
+        <div class="gfp-error" *ngIf="errors.user_email">{{thelang.words[errors.user_email]}}</div>         
+    </div>  
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('paysystem')">{{thelang.words['payments-paysystem']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.paysystem" [class.error]="errors.paysystem" disabled></div>   
+        <div class="gfp-error" *ngIf="errors.paysystem">{{thelang.words[errors.paysystem]}}</div>         
+    </div>  
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['payments-amount']}}</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.amount" disabled></div>    
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['payments-duration']}}</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.duration" disabled></div>    
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['payments-completed']}}</label></div>
+        <div class="gfp-inputwrap"><check-box [(value)]="x.completed" [disabled]="true"></check-box></div>
+    </div>    
+</div>

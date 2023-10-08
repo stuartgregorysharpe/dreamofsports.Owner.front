@@ -1,0 +1,25 @@
+.check-box {
+    display: inline-flex; align-items: center;
+    .cb-btn {
+        margin-right: 10px;         
+        .cb-mark {
+            width:20px; height: 20px; border-radius: 5px; border:1px var(--color-grey4) solid; position: relative;
+            span {
+                display: none; position: absolute; left: 50%; top:50%; transform: translate(-50%, -50%); color: white;
+                &::before {font-family: "fa-regular"; content: "\f00c"; font-size: 12px;}
+            }            
+        }
+        &.active {
+            .cb-mark {
+                background-color: var(--color-violet-medium); border-color: var(--color-violet-medium);
+                span {display: inline-block;}
+            }
+        }
+        &.disabled {            
+            .cb-mark {
+                background-color: var(--color-highlight1); border-color: var(--color-grey4);
+                span {color: var(--color-txt);}
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+.menubtn-btn {        
+    span::before {content: "\f142";}                                
+}
+.menubtn-menu {
+    display: none; position: fixed; z-index: 1001; background-color: white; border-radius: 5px; box-shadow: var(--shadow-popup); overflow: hidden; padding: 5px 0; user-select: none;        
+    &.active {display: block;}
+    ul {
+        list-style: none; margin: 0; padding: 0;
+        li {
+            height: 40px; line-height: 40px; padding: 0 15px; cursor: pointer; 
+            &:hover {background-color: var(--color-highlight1);}
+            span {
+                white-space: nowrap; display: flex; align-items: center;
+                &::before {font-family: "fa-regular"; width:25px; display: inline-block; font-size: 16px;}
+            }
+            &.disabled {opacity: 0.5; pointer-events: none;}
+            &.contact {span::before {content: "\f2bd";}}
+            &.delete {span::before {content: "\f2ed";}}
+            &.reply {span::before {content: "\f3e5";}}
+            &.actions {span::before {content: "\f0ae";}}
+            &.choose {span::before {content: "\f245";}}   
+            &.profile {span::before {content: "\f2bd";}}    
+            &.logout {span::before {content: "\e023";}}    
+        }
+    }
+}  
+.menubtn-ovl {
+    display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+    &.active {display: block;}
+}

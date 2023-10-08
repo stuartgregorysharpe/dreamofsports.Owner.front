@@ -1,0 +1,19 @@
+<div class="b-margined3">
+    <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+</div>
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('code')">{{thelang.words['countries-code']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.code" [class.error]="errors.code"></div>   
+        <div class="gfp-error" *ngIf="errors.code">{{thelang.words[errors.code]}}</div>         
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['countries-name']}} ({{selectedLang.slug}})</label></div>
+        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).name" [class.error]="errors.name"></div>   
+        <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>                 
+    </div>
+</div>

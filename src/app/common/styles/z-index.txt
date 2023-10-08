@@ -1,0 +1,8 @@
+loading ovl - 2 or auto
+sidebar 2 - 10
+header - 20
+sidebar - 30
+windows - 100+
+context menus - 1000
+errors - 1000
+preloader - 10000

@@ -1,0 +1,32 @@
+<div class="b-margined3">
+    <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+</div>
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['employees-name']}} ({{selectedLang.slug}})</label></div>
+        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).name" [class.error]="errors.name"></div>   
+        <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>                 
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('post')">{{thelang.words['employees-post']}} ({{selectedLang.slug}})</label></div>
+        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).post" [class.error]="errors.post"></div>   
+        <div class="gfp-error" *ngIf="errors.post">{{thelang.words[errors.post]}}</div>                 
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('img')">{{thelang.words['employees-img']}}</label></div>
+        <div class="gfp-inputwrap"><image-picker folder="employees" [(img)]="x.img" [error]="errors.img"></image-picker></div>
+        <div class="gfp-error" *ngIf="errors.img">{{thelang.words[errors.img]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['employees-pos']}}</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.pos"></div>    
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['employees-active']}}</label></div>
+        <div class="gfp-inputwrap"><check-box [(value)]="x.active"></check-box></div>
+    </div>
+</div>

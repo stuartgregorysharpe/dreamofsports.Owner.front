@@ -1,0 +1,40 @@
+<div class="b-margined3">
+    <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+</div>
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['tariffs-name']}} ({{selectedLang.slug}})</label></div>
+        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).name" [class.error]="errors.name"></div>   
+        <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>                 
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['tariffs-price']}}</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.price"></div>    
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['tariffs-duration']}}</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.duration"></div>    
+    </div> 
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('apple_pid')">{{thelang.words['tariffs-apple-pid']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.apple_pid" [class.error]="errors.apple_pid"></div>   
+        <div class="gfp-error" *ngIf="errors.apple_pid">{{thelang.words[errors.apple_pid]}}</div>                 
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('google_pid')">{{thelang.words['tariffs-google-pid']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.google_pid" [class.error]="errors.google_pid"></div>   
+        <div class="gfp-error" *ngIf="errors.google_pid">{{thelang.words[errors.google_pid]}}</div>                 
+    </div>   
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['tariffs-np-compatible']}}</label></div>
+        <div class="gfp-inputwrap"><check-box [(value)]="x.np_compatible"></check-box></div>
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['tariffs-active']}}</label></div>
+        <div class="gfp-inputwrap"><check-box [(value)]="x.active"></check-box></div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<nav>
+    <section>
+        <div class="sbn-head">
+            <div class="sbn-head1">{{thelang.words["sidebar-basic-head1"]}}</div>
+            <div class="sbn-head2">{{thelang.words["sidebar-basic-head2"]}}</div>
+        </div>
+        <div class="sbn-items">
+            <a class="home" [class.active]="!url[1]" routerLink="/"><span>{{thelang.words["sidebar-home"]}}</span></a>
+            <a class="settings" [class.active]="url[1] === 'settings'" routerLink="/settings"><span>{{thelang.words["sidebar-settings"]}}</span></a>  
+            <a class="admins" [class.active]="url[1] === 'admins'" routerLink="/admins"><span>{{thelang.words["sidebar-admins"]}}</span></a>                    
+            <a class="localization expandable" [class.expanded]="subActive.localization" [class.active]="url[1] === 'localization'" (click)="toggleSub('localization')"><span>{{thelang.words["sidebar-localization"]}}</span></a>                                       
+            <div class="sbn-sub" [class.active-3]="subActive.localization">
+                <a [class.active]="url[2] === 'langs'" routerLink="/localization/langs"><span>{{thelang.words["sidebar-langs"]}}</span></a> 
+                <a [class.active]="url[2] === 'wordbooks'" routerLink="/localization/wordbooks"><span>{{thelang.words["sidebar-wordbooks"]}}</span></a> 
+                <a [class.active]="url[2] === 'countries'" routerLink="/localization/countries"><span>{{thelang.words["sidebar-countries"]}}</span></a> 
+            </div>
+            <a class="files" [class.active]="url[1] === 'files'" routerLink="/files"><span>{{thelang.words["sidebar-files"]}}</span></a> 
+        </div>
+    </section>
+    <section>
+        <div class="sbn-head">
+            <div class="sbn-head1">{{thelang.words["sidebar-main-head1"]}}</div>
+            <div class="sbn-head2">{{thelang.words["sidebar-main-head2"]}}</div>
+        </div>
+        <div class="sbn-items">
+            <a class="pages" [class.active]="url[1] === 'pages'" routerLink="/pages"><span>{{thelang.words["sidebar-pages"]}}</span></a>     
+            <a class="users expandable" [class.expanded]="subActive.catalogue" [class.active]="url[1] === 'catalogue'" (click)="toggleSub('catalogue')"><span>{{thelang.words["sidebar-catalogue"]}}</span></a>                                       
+            <div class="sbn-sub" [class.active-5]="subActive.catalogue">
+                <a [class.active]="url[2] === 'users'" routerLink="/catalogue/users"><span>{{thelang.words["sidebar-users"]}}</span></a>                 
+                <a [class.active]="url[2] === 'cats'" routerLink="/catalogue/cats"><span>{{thelang.words["sidebar-cats"]}}</span></a> 
+                <a [class.active]="url[2] === 'favorites'" routerLink="/catalogue/favorites"><span>{{thelang.words["sidebar-favorites"]}}</span></a> 
+                <a [class.active]="url[2] === 'bans'" routerLink="/catalogue/bans"><span>{{thelang.words["sidebar-bans"]}}</span></a> 
+                <a [class.active]="url[2] === 'socials'" routerLink="/catalogue/socials"><span>{{thelang.words["sidebar-socials"]}}</span></a> 
+            </div>
+            <a class="moderation expandable" [class.expanded]="subActive.moderation" [class.active]="url[1] === 'moderation'" (click)="toggleSub('moderation')"><span>{{thelang.words["sidebar-moderation"]}}</span></a>                                       
+            <div class="sbn-sub" [class.active-2]="subActive.moderation">
+                <a [class.active]="url[2] === 'complaints'" routerLink="/moderation/complaints"><span>{{thelang.words["sidebar-complaints"]}}</span></a> 
+                <a [class.active]="url[2] === 'moderable-images'" routerLink="/moderation/moderable-images"><span>{{thelang.words["sidebar-moderable-images"]}}</span></a> 
+            </div>
+            <a class="finances expandable" [class.expanded]="subActive.finances" [class.active]="url[1] === 'finances'" (click)="toggleSub('finances')"><span>{{thelang.words["sidebar-finances"]}}</span></a>                                       
+            <div class="sbn-sub" [class.active-3]="subActive.finances">
+                <a [class.active]="url[2] === 'tariffs'" routerLink="/finances/tariffs"><span>{{thelang.words["sidebar-tariffs"]}}</span></a> 
+                <a [class.active]="url[2] === 'paysystems'" routerLink="/finances/paysystems"><span>{{thelang.words["sidebar-paysystems"]}}</span></a> 
+                <a [class.active]="url[2] === 'payments'" routerLink="/finances/payments"><span>{{thelang.words["sidebar-payments"]}}</span></a> 
+            </div>
+            <a class="articles expandable" [class.expanded]="subActive.articles" [class.active]="url[1] === 'articles'" (click)="toggleSub('articles')"><span>{{thelang.words["sidebar-articles"]}}</span></a>                                       
+            <div class="sbn-sub" [class.active-2]="subActive.articles">
+                <a [class.active]="url[2] === 'articles'" routerLink="/articles/articles"><span>{{thelang.words["sidebar-articles"]}}</span></a> 
+                <a [class.active]="url[2] === 'cats'" routerLink="/articles/cats"><span>{{thelang.words["sidebar-articlecats"]}}</span></a> 
+            </div>
+            <a class="employees" [class.active]="url[1] === 'employees'" routerLink="/employees"><span>{{thelang.words["sidebar-employees"]}}</span></a>           
+            <a class="messages" [class.active]="url[1] === 'messages'" routerLink="/messages"><span>{{thelang.words["sidebar-messages"]}}</span></a>           
+        </div>
+    </section>  
+    <section>
+        <div class="sbn-head">
+            <div class="sbn-head1">{{thelang.words["sidebar-utils-head1"]}}</div>
+            <div class="sbn-head2">{{thelang.words["sidebar-utils-head2"]}}</div>
+        </div>
+        <div class="sbn-items">
+            <a class="mailtemplates" [class.active]="url[1] === 'mailtemplates'" routerLink="/mailtemplates"><span>{{thelang.words["sidebar-mailtemplates"]}}</span></a>    
+            <a class="backups" [class.active]="url[1] === 'backups'" routerLink="/backups"><span>{{thelang.words["sidebar-backups"]}}</span></a>                  
+        </div>
+    </section>            
+</nav>

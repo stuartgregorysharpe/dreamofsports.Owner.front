@@ -1,0 +1,16 @@
+<div class="pw-overlay colorpicker" [class.active]="active"></div>
+<div class="pw-container colorpicker" [class.active]="active" (click)="onClick($event)">
+    <div class="pw-win" id="win-{{unique}}">
+        <div class="pw-head">
+            <div class="pw-title">{{thelang.words["common-colorpicker"]}}</div>
+            <div class="pw-close roundbtn" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="pw-main padded"> 
+            <color-sketch [disableAlpha]="true" [color]="value" (onChange)="onColorChange($event.color.hex)"></color-sketch>
+        </div>
+        <div class="pw-foot">
+            <button type="button" class="neutral cancel" (click)="onClose()"><span>{{thelang.words['common-cancel']}}</span></button>
+            <button type="button" class="apply" (click)="onApply()"><span>{{thelang.words['common-apply']}}</span></button>
+        </div>  
+    </div>
+</div>

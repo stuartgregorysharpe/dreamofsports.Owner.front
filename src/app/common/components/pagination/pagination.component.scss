@@ -1,0 +1,16 @@
+.pagination {   
+    height: 100%; display: flex; justify-content: space-between; align-items: center;
+    .p-btns {
+        @media (min-width:0) {display: none;}
+        @media (min-width:1000px) {display: flex;}        
+        .p-btn {
+            font-size: 14px; margin: 0 3px; width: auto; padding: 0 5px;
+            span::before {font-size: 14px;}
+            &:first-child {margin: 0 3px 0 0;}
+            &:last-child {margin: 0 0 0 3px;}            
+        }
+    }   
+    .p-manual {        
+        input {width:50px; height: 40px; padding: 0 3px; text-align: center;}
+    }    
+}

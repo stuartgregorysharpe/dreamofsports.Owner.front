@@ -1,0 +1,8 @@
+
+<div class="wrap" *ngIf="ready">
+	<the-sidebar *ngIf="authenticated"></the-sidebar>
+	<main>
+		<the-header *ngIf="authenticated"></the-header>
+		<div class="win" [class.padded]="authenticated" #win><router-outlet></router-outlet></div>
+	</main>	
+</div>

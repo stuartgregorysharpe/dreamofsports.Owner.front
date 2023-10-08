@@ -1,0 +1,35 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('group_id')">{{thelang.words['admins-group']}}</label></div>
+        <div class="gfp-inputwrap"><select-simple [(value)]="x.group_id" field="name" entity="adminGroup" [useSearch]="true" [useNull]="false" [error]="errors.group_id"></select-simple></div>
+        <div class="gfp-error" *ngIf="errors.group_id">{{thelang.words[errors.group_id]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['admins-name']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.name" [class.error]="errors.name"></div>
+        <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('email')">{{thelang.words['admins-email']}}</label></div>
+        <div class="gfp-inputwrap"><input type="email" [(ngModel)]="x.email" [class.error]="errors.email"></div>
+        <div class="gfp-error" *ngIf="errors.email">{{thelang.words[errors.email]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('password')">{{thelang.words['admins-password']}}</label></div>
+        <div class="gfp-inputwrap"><input type="password" [(ngModel)]="x.password" [placeholder]="x.id ? thelang.words['admins-password-ph'] : ''" [class.error]="errors.password"></div>
+        <div class="gfp-error" *ngIf="errors.password">{{thelang.words[errors.password]}}</div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('img')">{{thelang.words['admins-img']}}</label></div>
+        <div class="gfp-inputwrap"><image-picker folder="admins" [(img)]="x.img" [error]="errors.img"></image-picker></div>
+        <div class="gfp-error" *ngIf="errors.img">{{thelang.words[errors.img]}}</div>
+    </div>
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['admins-active']}}</label></div>
+        <div class="gfp-inputwrap"><check-box [(value)]="x.active" [disabled]="x.defended"></check-box></div>
+    </div>
+</div>

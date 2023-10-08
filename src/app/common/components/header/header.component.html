@@ -1,0 +1,10 @@
+<header>
+    <div class="h-btns">
+        <div class="h-btn roundbtn menu rightmargined" (click)="sidebarActive = !sidebarActive"><span></span></div>    
+        <the-monitor *ngIf="monitorActive"></the-monitor>           
+    </div>
+    <div class="h-btns right">         
+        <div class="h-btn roundbtn options leftmargined" routerLink="/options" [title]="thelang.words['header-options']"><span></span></div>    
+        <the-clock></the-clock>   
+    </div>
+</header>

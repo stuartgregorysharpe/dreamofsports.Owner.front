@@ -1,0 +1,9 @@
+<div class="radio" [class.flex]="flex">
+    <div class="r-title" *ngIf="title" [innerHTML]="title"></div>
+    <div class="r-items">
+        <div *ngFor="let item of items" class="r-item" [class.active]="item.id === value" (click)="onSelect(item)">
+            <div class="r-btn"><div class="r-border"><div class="r-point"></div></div></div>
+            <span [innerHTML]="item[visibleField]"></span>
+        </div>
+    </div>    
+</div>

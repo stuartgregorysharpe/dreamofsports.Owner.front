@@ -1,0 +1,13 @@
+.panel {
+    .p-left {
+        @media (min-width:0) {width: 0;}
+        @media (min-width:1000px) {width: calc(100% - 700px);}
+    }
+    .p-right {
+        @media (min-width:0) {width: 100%;}
+        @media (min-width:1000px) {width: 700px;}
+        .p-content {
+            padding: 0;
+        }
+    }
+}

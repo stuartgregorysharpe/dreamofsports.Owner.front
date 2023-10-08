@@ -1,0 +1,13 @@
+<div class="pw-overlay viewer" [class.active]="active"></div>
+<div class="pw-container viewer" [class.active]="active" (click)="onClick($event)">
+    <div class="pw-win" id="win-{{unique}}">
+        <div class="pw-head">
+            <div class="pw-title">{{thelang.words["common-viewimg"]}}</div>
+            <div class="pw-close roundbtn" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="pw-main"> 
+            <img *ngIf="url && type === 'images'" [src]="url | safe:'resourceUrl'">
+            <video #video *ngIf="url && type === 'videos'" [src]="url | safe:'resourceUrl'" controls></video>
+        </div>
+    </div>
+</div>

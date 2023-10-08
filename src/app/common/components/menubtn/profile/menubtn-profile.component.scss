@@ -1,0 +1,5 @@
+.menubtn-btn.profile {
+    color: var(--color-grey3);
+    &:hover, &.pressed {background-color: var(--color-grey1);}  
+    span::before {content: "\f2bd";}
+}

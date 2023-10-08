@@ -1,0 +1,37 @@
+.radio {
+    user-select: none;
+    &.flex {
+        display: flex; flex-wrap: wrap; align-items: center;
+        &.flex-end {justify-content: flex-end;}
+        .r-title {margin-right: 5px;}
+        .r-items {
+            display: flex; flex-wrap: wrap;
+            .r-item {margin: 0 10px 0 0;}
+        }
+    }
+    .r-title {}
+    .r-items {
+        .r-item {
+            display: flex; align-items: center; height: 40px;  cursor: pointer;
+            .r-btn {
+                width: 40px; height: 40px; border-radius: 20px; transition: 0.3s; margin-right: 3px; display: flex; justify-content: center; align-items: center;
+                &:hover {background-color: var(--color-highlight2);}
+                .r-border {
+                    width: 20px; height: 20px; border-radius: 10px; border: 2px var(--color-grey4) solid; display: flex; justify-content: center; align-items: center; transition: 0.3s;
+                    .r-point {
+                        width: 0; height: 0; border-radius: 6px; background-color: var(--color-violet-medium); transition: 0.3s;
+                    }
+                }
+            }
+            &.active {
+                pointer-events: none;
+                .r-btn {
+                    .r-border {
+                        border-color: var(--color-violet-medium);
+                        .r-point {width: 12px; height: 12px;}
+                    }
+                }
+            }
+        }
+    }    
+}

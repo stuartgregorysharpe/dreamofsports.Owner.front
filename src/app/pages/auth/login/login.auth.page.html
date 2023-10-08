@@ -1,0 +1,32 @@
+<div class="auth">
+    <div class="auth-left">
+        <div class="auth-content">                        
+            <form class="generic-form" (submit)="login()">
+                <div class="gf-logo b-margined3"><img src="/assets/images/logo2.svg" alt="logo"></div>
+                <div class="gf-head b-margined5">
+                    <div class="gf-head1">{{thelang.words['login-head']}}</div>                
+                </div>
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label class="required">{{thelang.words['login-email']}}</label></div>
+                    <div class="gfp-inputwrap"><input type="email" name="email" [(ngModel)]="email" [class.error]="errors['email']"></div>
+                    <div class="gfp-error" *ngIf="errors['email']">{{thelang.words[errors['email']]}}</div>
+                </div>
+                <div class="gf-param b-margined5">
+                    <div class="gfp-title b-margined1">
+                        <label class="required">{{thelang.words['login-password']}}</label>
+                        <label><a routerLink="/auth/recover">{{thelang.words['login-forgot']}}</a></label>
+                    </div>
+                    <div class="gfp-inputwrap"><input type="password" name="password" [(ngModel)]="password" [class.error]="errors['password']"></div>
+                    <div class="gfp-error" *ngIf="errors['password']">{{thelang.words[errors['password']]}}</div>
+                </div>
+                <div class="gf-param b-margined6">
+                    <div class="gfp-btnwrap"><button type="submit" class="login" [class.busy]="formSending"><span>{{thelang.words['login-submit']}}</span></button></div>
+                    <div class="gfp-error ta-center" *ngIf="errors['form']">{{thelang.words[errors['form']]}}</div>
+                </div>
+            </form>            
+        </div>        
+    </div>
+    <div class="auth-right">
+        <div class="ar-bg"><img src="/assets/images/bg.svg"></div>
+    </div>
+</div>

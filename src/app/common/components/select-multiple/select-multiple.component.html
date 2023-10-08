@@ -1,0 +1,8 @@
+<div class="select-multiple">
+    <div class="sm-item" *ngFor="let sitem of sitems" (click)="onSitemClick(sitem)">
+        <div class="roundbtn smi-btn" [class.active]="includes(sitem)">
+            <div class="smi-mark"><span></span></div>
+        </div>
+        <div class="smi-title" [innerHTML]="multilang ? sitem.translation(1)[field] : sitem[field]"></div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="file-picker">
+    <div class="fp-btn" [class.active]="active" [class.error]="error">
+        <span></span>
+        <div class="fp-ovl" (click)="onSelect()" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)"></div>
+    </div>
+    <div class="fp-error" *ngIf="innerError">{{thelang.words["common-error-file"]}}</div>
+</div>

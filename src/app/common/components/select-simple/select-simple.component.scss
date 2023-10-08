@@ -1,0 +1,39 @@
+.select-simple {
+    display: inline-block; position: relative; max-width: 100%; width: 100%;
+    .ss-value {
+        display: flex; align-items: center; height: 100%; border:1px var(--color-grey4) solid; border-radius: 5px; padding: 0 30px 0 15px; background: white; position: relative; cursor: pointer; 
+        &::after {position: absolute; right: 15px; top:50%; transform: translateY(-50%); pointer-events: none; font-family: "fa-regular"; content: "\f107"; font-size: 14px; margin-top: 2px;}
+        span {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        &.disabled {pointer-events: none; background-color: var(--color-highlight1);}
+        &.error {border-color: var(--color-red);}
+    }
+    .ss-menu {
+        display: none; position: fixed; z-index: 1001; background-color: white; border-radius: 5px; box-shadow: var(--shadow-popup); overflow: hidden; user-select: none;        
+        &.active {display: block;}
+        .ssm-search {
+            height: 60px; padding: 0 15px; display: flex; align-items: center; border-bottom: 1px var(--color-grey5) solid;
+            .ssm-inputwrap {
+                height: 40px; width:100%; position: relative; padding-left: 25px;
+                &::before {display: inline-block; font-family: "fa-regular"; content: "\f002"; position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--color-grey2);}
+                input {width: 100%; height: 100%; padding: 0; border: none;}
+            }
+            button {display: none;}
+        }
+        .ssm-sitems {
+            padding: 5px 0; height: 210px; overflow-y: scroll;
+            ul {
+                margin: 0; padding: 0; list-style: none;
+                li {
+                    height: 40px; padding: 0 15px; display: flex; align-items: center; cursor: pointer;
+                    &:hover {background-color: var(--color-highlight1);}
+                    .ssm-title {white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px;}  
+                    &.disabled {pointer-events: none;}                  
+                }
+            }            
+        }
+    }
+    .ss-ovl {
+        display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+        &.active {display: block;}
+    }
+}

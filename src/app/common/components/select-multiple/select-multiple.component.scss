@@ -1,0 +1,24 @@
+.select-multiple {
+    border:1px var(--color-grey4) solid; border-radius: 5px; height: 200px; overflow-y: scroll;
+    .sm-item {
+        display: flex; padding: 5px 10px; align-items: center; transition: 0.3s; cursor: pointer;
+        &:hover {background-color: var(--color-bg-light);}
+        .smi-btn {
+            margin-right: 10px;         
+            .smi-mark {
+                width:20px; height: 20px; border-radius: 5px; border:1px var(--color-grey4) solid; position: relative;
+                span {
+                    display: none; position: absolute; left: 50%; top:50%; transform: translate(-50%, -50%); color: white;
+                    &::before {font-family: "fa-regular"; content: "\f00c"; font-size: 12px;}
+                }            
+            }
+            &.active {
+                .smi-mark {
+                    background-color: var(--color-violet-medium); border-color: var(--color-violet-medium);
+                    span {display: inline-block;}
+                }
+            }
+        }
+        .smi-title {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+    }
+}

@@ -1,0 +1,19 @@
+<div class="pw-overlay editor" [class.active]="active"></div>
+<div class="pw-container editor" [class.active]="active" (click)="onClick($event)">
+    <div class="pw-win" id="win-{{unique}}">
+        <div class="pw-head">
+            <div class="pw-title">{{thelang.words["common-editor"]}}</div>
+            <div class="pw-close roundbtn" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="pw-main"> 
+            <div class="tiny-wrap in-popup">    
+                <editor *ngIf="dir === 'ltr'" apiKey="vyqpgkbwnitqsjn9livngxdsuxggz6aowmwwx6d1spe78nnv" [(ngModel)]="copy" [init]="editorCfgLtr"></editor>
+                <editor *ngIf="dir === 'rtl'" apiKey="vyqpgkbwnitqsjn9livngxdsuxggz6aowmwwx6d1spe78nnv" [(ngModel)]="copy" [init]="editorCfgRtl"></editor>                
+            </div>     
+        </div>
+        <div class="pw-foot">
+            <button type="button" class="neutral cancel" (click)="onClose()"><span>{{thelang.words['common-cancel']}}</span></button>
+            <button type="button" class="apply" (click)="onApply()"><span>{{thelang.words['common-apply']}}</span></button>
+        </div>  
+    </div>
+</div>

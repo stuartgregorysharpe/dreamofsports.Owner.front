@@ -1,0 +1,202 @@
+* {box-sizing: border-box; outline: none; overflow-anchor: none; font-family: "inter", Helvetica, sans-serif;}		
+
+a {
+	cursor: pointer; text-decoration: none; color: var(--color-violet-medium);
+	&:hover {text-decoration: underline;}
+}
+
+p {margin: 0 0 15px 0;}	
+
+h2 {margin: 0 0 15px 0; font-size: 20px;}
+
+section {margin: 0 0 30px 0;}
+
+input, textarea, select {
+	@media (min-width:0) {font-size: 16px;}
+	@media (min-width:1000px) {font-size: 14px;}	
+	background: white;		
+}
+
+input[type='text'], input[type='email'], input[type='password'], input[type='number'] {
+	border:1px var(--color-grey4) solid; border-radius: 5px; padding: 0 15px;
+	&:focus {border-color: var(--color-violet-medium);}
+	&.error {border-color: var(--color-red);}
+	&:disabled {background-color: var(--color-highlight1);}
+}
+
+.color-indicator {width: 40px; min-width: 40px; height: 40px; border-radius: 20px; border:1px var(--color-grey4) solid; }
+
+.selectwrap {
+	position: relative; display: inline-block; 
+	&.wide {display: block;}
+	select {
+		width:100%; height: 100%; border:1px var(--color-grey4) solid; border-radius: 5px; padding: 0 30px 0 15px; background: white; appearance: none; cursor: pointer;
+		&:disabled {background-color: var(--color-highlight1); color: var(--color-txt); opacity: 1;}
+	}
+	&.error {select {border-color: var(--color-red);}}
+	&::after {position: absolute; right: 15px; top:50%; transform: translateY(-50%); pointer-events: none; font-family: "fa-regular"; content: "\f107"; font-size: 14px; margin-top: 2px;}
+}
+
+.inputwithbtns {
+	display: flex; align-items: center; 
+	>:first-child {flex: 1;}
+	>span:first-child {flex: inherit;}
+	.iwb-btns {.roundbtn {margin: 0 0 0 5px;}}
+	&.reverse {
+		flex-direction: row-reverse; justify-content: flex-end;
+		.iwb-btns {.roundbtn {margin: 0 5px 0 0;}}
+	}
+}
+
+textarea {
+	border:1px var(--color-grey4) solid; border-radius: 5px; padding: 15px; resize: vertical;
+	&:focus {border-color: var(--color-violet-medium);}
+	&.error {border-color: var(--color-red);}
+	&:disabled {background-color: var(--color-highlight1);}
+}
+
+button, select {user-select: none;}		
+
+button {
+	background: var(--color-violet-medium); color: white; transition: 0.3s; cursor: pointer; border:none; font-size: 14px; position: relative;              
+	&::after {display: none; justify-content: center; align-items: center; position: absolute; left: calc(50% - 15px); top: calc(50% - 15px); width: 30px; height: 30px; color: white; font-family: "fa-regular"; content: "\f3f4"; animation: rotation 1s linear 0s infinite;}
+	&:hover {background: var(--color-violet-dark);}
+	&:disabled {background: var(--color-grey4); color: white; pointer-events: none;}
+	&.hidden {display: none;}			
+	&.neutral {
+		background: transparent; color: inherit;
+		&:hover {background: var(--color-grey5);}
+	}
+	&.danger {
+		background: transparent; color: var(--color-red);
+		&:hover {background: var(--color-red-transparent);}
+		&:disabled {color: var(--color-grey4);}
+	}			
+    span {
+        display: flex; align-items: center; justify-content: center; transition: 0.3s;
+        &::before {font-family: "fa-regular"; margin-right: 10px; font-size: 16px;}
+    }
+	&.compact {
+		font-size: 12px;
+		span::before {margin-right: 5px; font-size: 14px;}
+	} 
+	&.login {span::before {content: "\e022";}}
+    &.code {span::before {content: "\f3ed";}}
+    &.recover {span::before {content: "\f084";}}
+	&.delete {span::before {content: "\f2ed";}}
+	&.cancel {span::before {content: "\f0e2";}}
+	&.save {span::before {content: "\f0c7";}}			
+	&.create {span::before {content: "\f067";}}			
+	&.action {span::before {content: "\f0e7";}}		
+	&.done, &.apply {span::before {content: "\f00c";}}	
+	&.apply {span::before {content: "\f00c";}}					
+	&.select {span::before {content: "\f245";}}	
+	&.unlock {span::before {content: "\f3c1";}}	
+	&.notify {span::before {content: "\f0f3";}}	
+	&.balance {span::before {content: "\f872";}}	
+	&.close {span::before {content: "\f00d";}}	
+    &.busy {
+        pointer-events: none; background: var(--color-grey2); 
+		span {opacity: 0.2;}
+		&::after {display: flex;}
+    }			
+}	
+
+.roundbtn {
+	width:40px; height: 40px; min-width: 40px; border-radius: 20px; color: var(--color-grey2); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; text-decoration: none;
+	&:hover {background-color: var(--color-grey5); text-decoration: none;}
+	&.pressed {background-color: var(--color-grey5); text-decoration: none;}
+	span {
+		pointer-events: none;
+		&::before {font-family: "fa-regular"; font-size: 20px;}
+	}	
+	&.disabled {pointer-events: none;}
+	&.compact {
+		height: 30px; width:30px; min-width: 30px;
+        span::before {font-size: 14px;}
+	}
+	&.violet {
+		background-color: var(--color-violet-medium); color: white;
+		&:hover {background-color: var(--color-violet-dark);}
+		&.disabled {background: var(--color-grey4);}
+	}
+	&.red {
+		background-color: var(--color-red); color: white;
+		&:hover {background-color: var(--color-red-dark);}
+		&.disabled {background: var(--color-grey4);}
+	}
+	&.danger {
+		color: var(--color-red);
+		&:hover {background: var(--color-red-transparent);}		
+	}	
+	&.delete, &.close {span::before {content: "\f00d";}}
+	&.create {span::before {content: "\f067";}}
+	&.edit {span::before {content: "\f040";}}
+	&.save {span::before {content: "\f0c7";}}
+	&.search {span::before {content: "\f002";}}     			               
+	&.menu {span::before {content: "\f0c9";}}     			               
+	&.logout {span::before {content: "\e023";}}     
+	&.back {span::before {content: "\f053";}}     			               
+	&.forward {span::before {content: "\f054";}} 
+	&.down {span::before {content: "\f078";}} 
+	&.up {span::before {content: "\f077";}} 
+	&.cancel {span::before {content: "\f0e2";}}     
+	&.options {span::before {content: "\f142";}}     	
+	&.view {span::before {content: "\f06e";}}     		
+	&.editor {span::before {content: "\f2d0";}}   
+	&.filter {span::before {content: "\f0b0";}}     	
+	&.download {span::before {content: "\f019";}}    
+	&.import {span::before {content: "\f56f";}}     
+	&.up {span::before {content: "\f077";}}     
+	&.down {span::before {content: "\f078";}}   
+	&.link {span::before {content: "\f0c1";}}    
+	&.color {span::before {content: "\f53f";}}     	
+	&.close {span::before {content: "\f00d";}}   
+	&.transactions {span::before {content: "\f0ec";}}   
+}
+
+.loading {
+	animation: appear 2s ease 0s 1; padding: 5px;
+	&.compact {padding: 0;}
+	&.abs {position: absolute; left: 0; top: 0;}
+	span::before {font-family: "fa-regular"; display: inline-block; margin-right: 10px; content: "\f3f4"; animation: rotation 1s linear 0s infinite;}
+}
+
+.loading-ovl {
+	position: absolute; left: 0; top: 0; right: 0; height: 0; background-color: var(--color-white-transparent2); opacity: 0; transition: opacity 0.3s ease 0s, height 0s linear 0.3s; display: flex; justify-content: center; align-items: center;			
+	&.active {
+		height: 100%; opacity: 1; transition: opacity 0.3s ease 0.001s, height 0s;
+		&.infinite {height: 999999999px;}
+	}
+	&.rounded {border-radius: 15px;}	
+	span {
+		font-size: 60px; color: rgba(220,220,220,0.3); 
+		&::before {font-family: "fa-regular";  content: "\f251"; }
+	}			
+}
+
+.ck-wrap {
+	color: black;
+	.ck-editor__editable_inline {min-height: 300px; max-height: 300px;}
+	&.rtl {.ck-editor__editable_inline[dir="ltr"] {direction: rtl !important;}}
+	a {color: blue;}
+	&.error {.ck-toolbar, .ck-editor__editable {border-color: var(--color-red) !important;}}	
+}
+
+.tiny-wrap {	
+	&.in-page {
+		.tox-tinymce {border:1px var(--color-grey4) solid; border-radius: 5px; }
+	}
+	&.in-popup {
+		.tox-tinymce {border-top: 1px var(--color-grey4) solid; border-bottom: 1px var(--color-grey4) solid; border-left: none; border-right: none; border-radius: 0; }
+	}
+}
+
+.note {
+	@media (min-width:0) {padding: 15px;}
+    @media (min-width:1000px) {padding: 15px 25px;}
+	span {
+		display: flex; align-items: center;
+		&::before {display: flex; width: 40px; min-width: 40px; height: 40px; justify-content: center; align-items: center; font-family: "fa-regular"; content: "\f06a"; font-size: 20px; margin-right: 5px;}
+	}
+}

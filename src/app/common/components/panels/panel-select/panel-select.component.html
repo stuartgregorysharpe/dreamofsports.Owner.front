@@ -1,0 +1,60 @@
+<div class="panel" [class.active]="active">
+    <div class="p-left" (click)="onClose()"></div>
+    <div class="p-right" #container (scroll)="onScroll()">
+        <div class="p-head">
+            <div class="p-title {{titleClass}}">{{thelang.words[title]}}</div>
+            <div class="roundbtn close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="p-content">
+            <div class="p-dash padded b-margined3">
+                <div class="ph-btn roundbtn violet filter" [class.red]="filterActive" (click)="filterActive = !filterActive" [title]="thelang.words['common-filter']"><span></span></div>
+            </div>
+            <div class="list inpanel">
+                <div class="l-wrap">
+                    <div class="l-filter wide" *ngIf="filterActive">
+                        <form class="generic-form" (submit)="initEntities()">
+                            <div class="gf-subhead b-margined3">{{thelang.words['common-filter']}}</div>
+                            <div class="gf-param b-margined3" *ngFor="let f of filterableFields; let i = index;">
+                                <div class="gf-title b-margined1">{{thelang.words[filterableFieldNames[i]]}}</div>
+                                <div class="gfp-inputwrap"><input type="text" class="wide" [name]="f" [(ngModel)]="filter[f]"></div>
+                            </div>    
+                            <div class="gf-2btnswrap">
+                                <button type="submit">{{thelang.words['common-apply']}}</button>
+                                <button type="button" class="danger" (click)="filterReset()" [disabled]="!filterChanged">{{thelang.words['common-reset']}}</button>
+                            </div>
+                        </form>
+                    </div>
+                    <table>
+                        <tr class="no-selection">
+                            <th class="compact"></th>
+                            <th class="compact"><label [class.sorted-forward]="sortBy === 'id' && sortDir === 1" [class.sorted-backward]="sortBy === 'id' && sortDir === -1" (click)="onChangeSorting('id')">ID</label></th>                
+                            <th *ngFor="let f of fieldNames; let i = index;">
+                                <ng-container *ngIf="isSortable(fields[i])">
+                                    <label [class.sorted-forward]="sortBy === fields[i] && sortDir === 1" [class.sorted-backward]="sortBy === fields[i] && sortDir === -1" (click)="onChangeSorting(fields[i])">{{thelang.words[f]}}</label>
+                                </ng-container>
+                                <ng-container *ngIf="!isSortable(fields[i])">
+                                    {{thelang.words[f]}}
+                                </ng-container>                                
+                            </th>                 
+                        </tr>
+                        <ng-container *ngIf="entities.length">
+                            <tr *ngFor="let x of entities">
+                                <td><check-box [(value)]="x.__selected"></check-box></td>
+                                <td>{{x.id}}</td>
+                                <td *ngFor="let f of fields">{{x[f]}}</td>
+                            </tr>     
+                        </ng-container> 
+                        <ng-container *ngIf="!entities.length">
+                            <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                        </ng-container>                    
+                    </table>
+                </div>                
+            </div>
+            <div class="p-loading" [class.active]="loading"></div>             
+        </div>
+        <div class="p-foot">
+            <button type="button" class="neutral close" (click)="onClose()"><span>{{thelang.words['common-close']}}</span></button>
+            <button type="button" class="apply" (click)="onApply()"><span>{{thelang.words['common-apply']}}</span></button>    
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+@font-face {font-family: "fa-regular"; src: url("/assets/fonts/fa-regular.woff"); font-display: swap;}
+@font-face {font-family: "fa-solid"; src: url("/assets/fonts/fa-solid.woff"); font-display: swap;}
+@font-face {font-family: "fa-brands"; src: url("/assets/fonts/fa-brands.woff"); font-display: swap;}
+@font-face {font-family: "inter"; src: url("/assets/fonts/Inter-Regular.woff"); font-weight: normal; font-style: normal; font-display: swap;}
+@font-face {font-family: "inter"; src: url("/assets/fonts/Inter-Medium.woff"); font-weight: 500; font-style: normal; font-display: swap;}
+@font-face {font-family: "inter"; src: url("/assets/fonts/Inter-SemiBold.woff"); font-weight: 600; font-style: normal; font-display: swap;}
+@font-face {font-family: "inter"; src: url("/assets/fonts/Inter-Bold.woff"); font-weight: bold; font-style: normal; font-display: swap;}
+
+html {
+	--color-bg-dark: #eff3f8;
+	--color-bg-light: #f7f9fb;
+	--color-txt: #1e293b;
+	--color-blue-dark: #111625;
+	--color-blue-light: #3775f1;
+	--color-violet-dark: #3f35c4;
+	--color-violet-medium: #4f46e5;	
+	--color-violet-light: #7680f4;	
+	--color-grey1: #272d3b;
+	--color-grey2: #5a687f;
+	--color-grey3: #8998ae;	
+	--color-grey4: #cbd5e1;	
+	--color-grey5: #e2e8f0;	
+	--color-highlight1: #eff3f8;
+	--color-highlight2: #ecf0fe;
+	--color-red-dark: #b12527;
+	--color-red: #d52f31;
+	--color-green: #0f9d44;
+	--color-red-transparent: rgba(213,47,49,0.2);
+	--color-white-transparent1: rgba(255,255,255,0.2);
+	--color-white-transparent2: rgba(255,255,255,0.8);
+	--shadow-small: 1px 1px 2px 0px rgba(220,220,220,1);
+	--shadow-small2: 1px 1px 2px 0px rgba(220,220,220,1), -1px -1px 1px 0px rgba(240,240,240,1);
+	--shadow-small3: 1px 1px 3px 0px rgba(150,150,150,1);
+	--shadow-popup: 0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f;
+	--shadow-win: 0 8px 10px -5px #0003, 0 16px 24px 2px #00000024, 0 6px 30px 5px #0000001f;
+}
+
+@keyframes rotation {
+	0% {transform: rotate(0);}	
+	100% {transform: rotate(360deg);}
+}
+
+@keyframes appear {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes appear-slow {
+	0% {opacity: 0;}
+	50% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes animated-gradient {
+	0% {background-position: 0% 50%;}
+	50% {background-position: 100% 50%;}
+	100% {background-position: 0% 50%;}
+}

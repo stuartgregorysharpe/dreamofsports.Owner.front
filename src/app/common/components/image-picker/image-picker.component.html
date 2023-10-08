@@ -1,0 +1,15 @@
+<div class="ip-wrap">
+    <div class="ip-main">
+        <div class="ip-img" [class.empty]="!img" [class.active]="active" [class.error]="error" [title]="thelang.words['common-selectimg']">
+            <img *ngIf="img" [src]="imgOut | safe:'resourceUrl'">
+            <div class="ip-ovl" (click)="onSelect()" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)"></div>
+        </div>
+        <div *ngIf="img" class="ip-btns">
+            <div class="ip-btn roundbtn view" (click)="viewerActive = true" [title]="thelang.words['common-viewimg']"><span></span></div>
+            <div class="ip-btn roundbtn danger delete" (click)="onDelete()" [title]="thelang.words['common-removeimg']"><span></span></div>
+        </div>
+    </div>
+    <div *ngIf="innerError" class="ip-error">{{thelang.words['common-error-img']}}</div>    
+</div>
+
+<image-viewer [url]="imgOut" type="images" [(active)]="viewerActive"></image-viewer>

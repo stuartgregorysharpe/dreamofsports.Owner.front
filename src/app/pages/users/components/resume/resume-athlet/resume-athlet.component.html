@@ -1,0 +1,100 @@
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('firstname')">{{thelang.words['athlets-firstname']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.athlet.translation(selectedLang.id).firstname" [class.error]="errors.firstname"></div>            
+    <div class="gfp-error" *ngIf="errors.firstname">{{thelang.words[errors.firstname]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('lastname')">{{thelang.words['athlets-lastname']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.athlet.translation(selectedLang.id).lastname" [class.error]="errors.lastname"></div>            
+    <div class="gfp-error" *ngIf="errors.lastname">{{thelang.words[errors.lastname]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('img')">{{thelang.words['athlets-img']}}</label></div>
+    <div class="gfp-inputwrap"><image-picker folder="users" [supabase]="true" [(img)]="x.athlet.img" [error]="errors.img"></image-picker></div>
+    <div class="gfp-error" *ngIf="errors.img">{{thelang.words[errors.img]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('country_id')">{{thelang.words['athlets-country']}}</label></div>
+    <div class="gfp-inputwrap">
+        <div class="inputwithbtns">
+            <select-simple [(value)]="x.athlet.country_id" field="code" sortBy="code" entity="country" [useSearch]="true" [useNull]="true" [error]="errors.country_id"></select-simple>
+            <div *ngIf="x.athlet.country_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/localization/countries/edit/{{x.athlet.country_id}}"><span></span></a></div>
+        </div>
+    </div>
+    <div class="gfp-error" *ngIf="errors.country_id">{{thelang.words[errors.country_id]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('region')">{{thelang.words['athlets-region']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.athlet.translation(selectedLang.id).region" [class.error]="errors.region"></div>            
+    <div class="gfp-error" *ngIf="errors.region">{{thelang.words[errors.region]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('city')">{{thelang.words['athlets-city']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.athlet.translation(selectedLang.id).city" [class.error]="errors.city"></div>            
+    <div class="gfp-error" *ngIf="errors.city">{{thelang.words[errors.city]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label>{{thelang.words['athlets-birthdate']}}</label></div>
+    <div class="gfp-inputwrap"><date-picker [(value)]="x.athlet.birthdate" [resetable]="true" [resetvalue]="null"></date-picker></div>            
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label>{{thelang.words['athlets-gender']}}</label></div>
+    <div class="gfp-inputwrap">
+        <div class="selectwrap">
+            <select [(ngModel)]="x.athlet.gender">
+                <option value="m">{{thelang.words['athlets-gender-m']}}</option>
+                <option value="f">{{thelang.words['athlets-gender-f']}}</option>
+            </select>
+        </div>
+    </div>            
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('height_meter')">{{thelang.words['athlets-height-meter']}}</label></div>
+    <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.athlet.height_meter" [class.error]="errors.height_meter"></div>
+    <div class="gfp-error" *ngIf="errors.height_meter">{{thelang.words[errors.height_meter]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('height_foot')">{{thelang.words['athlets-height-foot']}}</label></div>
+    <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.athlet.height_foot" [class.error]="errors.height_foot"></div>
+    <div class="gfp-error" *ngIf="errors.height_foot">{{thelang.words[errors.height_foot]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('weight_kg')">{{thelang.words['athlets-weight-kg']}}</label></div>
+    <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.athlet.weight_kg" [class.error]="errors.weight_kg"></div>
+    <div class="gfp-error" *ngIf="errors.weight_kg">{{thelang.words[errors.weight_kg]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('weight_pound')">{{thelang.words['athlets-weight-pound']}}</label></div>
+    <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.athlet.weight_pound" [class.error]="errors.weight_pound"></div>
+    <div class="gfp-error" *ngIf="errors.weight_pound">{{thelang.words[errors.weight_pound]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('bio')">{{thelang.words['athlets-bio']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><textarea [dir]="selectedLang.dir" [(ngModel)]="x.athlet.translation(selectedLang.id).bio" [class.error]="errors.bio"></textarea></div>    
+    <div class="gfp-error" *ngIf="errors.bio">{{thelang.words[errors.bio]}}</div>           
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('cat_id')">{{thelang.words['athlets-cat']}}</label></div>
+    <div class="gfp-inputwrap">
+        <div class="inputwithbtns">
+            <select-simple [(value)]="x.athlet.cat_id" field="name" sortBy="pos" entity="cat" [multilang]="true" [useSearch]="false" [useNull]="true" [error]="errors.cat_id"></select-simple>
+            <div *ngIf="x.athlet.cat_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/catalogue/cats/edit/{{x.athlet.cat_id}}"><span></span></a></div>
+        </div>
+    </div>
+    <div class="gfp-error" *ngIf="errors.cat_id">{{thelang.words[errors.cat_id]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('team')">{{thelang.words['athlets-team']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.athlet.translation(selectedLang.id).team" [class.error]="errors.team"></div>            
+    <div class="gfp-error" *ngIf="errors.team">{{thelang.words[errors.team]}}</div>
+</div>
+<div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('role')">{{thelang.words['athlets-role']}} ({{selectedLang.slug}})</label></div>
+    <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.athlet.translation(selectedLang.id).role" [class.error]="errors.role"></div>            
+    <div class="gfp-error" *ngIf="errors.role">{{thelang.words[errors.role]}}</div>
+</div>
+<div class="gf-param">
+    <div class="gfp-title b-margined1"><label [class.required]="isRequired('no')">{{thelang.words['athlets-no']}}</label></div>
+    <div class="gfp-inputwrap"><input type="text" class="small" [(ngModel)]="x.athlet.no" [class.error]="errors.no"></div>
+    <div class="gfp-error" *ngIf="errors.no">{{thelang.words[errors.no]}}</div>
+</div>

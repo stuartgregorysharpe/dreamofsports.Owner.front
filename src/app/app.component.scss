@@ -1,0 +1,11 @@
+@import "./common/styles/_var.scss";
+
+html {
+	margin: 0; padding: 0; height: 100%; width:100%; overflow: hidden;
+    body {        
+        margin: 0; padding: 0; height: 100%; width:100%; overflow: hidden; background-color: var(--color-bg-dark); color: var(--color-txt); font-size: 16px; font-family: "inter", Helvetica, sans-serif; overflow-anchor: none; overscroll-behavior: none; 				
+		@import "./common/styles/_general.scss";		
+		@import "./common/styles/_layout.scss";		
+		@import "./common/styles/_helpers.scss";				
+    }
+}

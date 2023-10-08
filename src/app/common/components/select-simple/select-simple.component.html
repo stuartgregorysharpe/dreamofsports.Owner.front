@@ -1,0 +1,20 @@
+<div class="select-simple">
+    <div class="ss-value" [class.disabled]="disabled" [class.error]="error" #btnelement (click)="menuOnActivate()"><span>{{title || thelang.words["common-loading"]}}</span></div>
+    <div class="ss-menu" [class.active]="menuActive" [style.top]="menuTop" [style.left]="menuLeft" [style.width]="menuWidth">
+        <form *ngIf="useSearch" class="ssm-search" (submit)="initSelectableItems()">
+            <div class="ssm-inputwrap">
+                <input type="text" name="search" [(ngModel)]="sitemsSearch" autocomplete="off" [placeholder]="thelang.words['common-search']">
+            </div>            
+            <button type="submit"></button>
+        </form>
+        <div class="ssm-sitems" (scroll)="sitemsOnScroll()" #sitemselement>            
+            <ul>
+                <li *ngIf="useUndefined" (click)="sitemsOnSelect(undefined)"><div class="ssm-title">{{thelang.words["common-any"]}}</div></li>
+                <li *ngIf="useNull" (click)="sitemsOnSelect(null)"><div class="ssm-title">{{thelang.words["common-empty2"]}}</div></li>
+                <li *ngFor="let si of sitems" (click)="sitemsOnSelect(si)" [class.disabled]="cantSelectByArray.includes(si.id) || si[cantSelectByField] === false"><div class="ssm-title" [innerHTML]="sitemContent(si)"></div></li>            
+                <li *ngIf="!sitemsReady || sitemsLoadingMore"><div class="loading compact"><span></span></div></li>
+            </ul>            
+        </div>
+    </div>
+    <div class="ss-ovl" [class.active]="menuActive" (click)="menuActive = false"></div>
+</div>

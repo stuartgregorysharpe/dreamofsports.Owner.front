@@ -1,0 +1,13 @@
+header {
+    @media (min-width:0) {padding: 0 15px;}
+	@media (min-width:1000px) {padding: 0 25px;}						
+    height: 60px; background-color: white; box-shadow: var(--shadow-small); position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between;
+    .h-btns {
+        display: flex; align-items: center;
+        .h-btn {
+            &.rightmargined {margin: 0 15px 0 0;}
+            &.rightmargined2 {margin: 0 30px 0 0;}
+            &.leftmargined {margin: 0 0 0 15px;}
+        }        
+    }
+}

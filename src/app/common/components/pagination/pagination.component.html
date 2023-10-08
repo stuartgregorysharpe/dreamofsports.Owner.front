@@ -1,0 +1,10 @@
+<div class="pagination" *ngIf="parts.length > 1">       
+    <div class="p-btns">
+        <div class="p-btn roundbtn back" [class.disabled]="!current" (click)="back()"><span></span></div>
+        <div *ngFor="let p of parts" class="p-btn roundbtn" [class.disabled]="p==-1 || p==-2" [class.pressed]="p == current" (click)="setCurrent(p)">{{(p==-1 || p==-2) ? "..." : p+1}}</div>
+        <div class="p-btn roundbtn forward" [class.disabled]="current === n-1" (click)="forward()"><span></span></div>
+    </div>  
+    <div class="p-manual">
+        {{thelang.words["common-page"]}} <input type="text" [(ngModel)]="changeTo" [placeholder]="current+1" (change)="setCurrentManual();"> {{thelang.words["common-of"]}} {{n}}
+    </div>  
+</div>

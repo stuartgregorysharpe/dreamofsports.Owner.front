@@ -1,0 +1,22 @@
+<div class="text-editor">
+    <div class="te-inputwrap">
+        <div *ngIf="mode === 'editor'" class="tiny-wrap in-page">
+            <editor *ngIf="dir === 'ltr'" apiKey="vyqpgkbwnitqsjn9livngxdsuxggz6aowmwwx6d1spe78nnv" [(ngModel)]="value" (ngModelChange)="onChange()" [init]="editorCfgLtr"></editor>
+            <editor *ngIf="dir === 'rtl'" apiKey="vyqpgkbwnitqsjn9livngxdsuxggz6aowmwwx6d1spe78nnv" [(ngModel)]="value" (ngModelChange)="onChange()" [init]="editorCfgRtl"></editor>
+        </div>
+        <div *ngIf="mode === 'html'"><textarea [dir]="dir" [(ngModel)]="value" (ngModelChange)="onChange()" [class.error]="error"></textarea></div>
+        <div class="te-error" *ngIf="error">{{thelang.words[error]}}</div> 
+    </div>    
+    <div class="radio flex flex-end">
+        <div class="r-items">
+            <div class="r-item" [class.active]="mode === 'editor'" (click)="mode = 'editor'">
+                <div class="r-btn"><div class="r-border"><div class="r-point"></div></div></div>
+                <span>{{thelang.words['common-editor']}}</span>
+            </div>
+            <div class="r-item" [class.active]="mode === 'html'" (click)="mode = 'html'">
+                <div class="r-btn"><div class="r-border"><div class="r-point"></div></div></div>
+                <span>HTML</span>
+            </div>
+        </div>    
+    </div>    
+</div>

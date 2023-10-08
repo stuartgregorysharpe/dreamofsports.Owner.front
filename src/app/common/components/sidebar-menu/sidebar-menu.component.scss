@@ -1,0 +1,61 @@
+nav {
+    section {
+        margin-bottom: 15px;
+        .sbn-head {
+            padding: 0 25px; margin-bottom: 10px;
+            .sbn-head1 {color: var(--color-violet-light); text-transform: uppercase; font-weight: 600; font-size: 12px; line-height: 24px;}
+            .sbn-head2 {color: var(--color-grey3); font-size: 11px;}
+        }
+        .sbn-items {
+            padding: 0 10px;
+            a {
+                display: block; height: 40px; line-height: 40px; color: white; text-decoration: none; opacity: 0.8; padding: 0 15px; font-size: 13px; font-weight: 500; border-radius: 10px; margin-bottom: 3px; 
+                span {
+                    display: flex; align-items: center; position: relative;
+                    &::before {font-size: 18px; width:30px; font-family: "fa-regular"; content: "";}
+                }                    
+                &:hover, &.active {background-color: var(--color-grey1); opacity: 1;}
+                &.expandable {
+                    span::after {font-family: "fa-regular"; content: "\f105"; position: absolute; right: 10px; top:50%; transform: translateY(-50%); transition: 0.3s;}
+                    &.expanded {span::after {transform: translateY(-50%) rotate(90deg);}}
+                }
+                &.home {span::before {content: "\f015";}}
+                &.settings {span::before {content: "\f013";}}
+                &.admins {span::before {content: "\f82d";}}
+                &.localization {span::before {content: "\f57d";}}
+                &.langs {span::before {content: "\f1ab";}}
+                &.wordbooks {span::before {content: "\f02d";}}
+                &.pages {span::before {content: "\f15c";}}
+                &.blog {span::before {content: "\f781";}}
+                &.faq {span::before {content: "\f059";}}
+                &.gals {span::before {content: "\f03e";}}
+                &.files {span::before {content: "\f8a0";}} 
+                &.baxers {span::before {content: "\e3c1";}}                        
+                &.mailtemplates {span::before {content: "\f121";}}
+                &.wsservers {span::before {content: "\f233";}}
+                &.backups {span::before {content: "\f187";}}       
+                &.employees {span::before {content: "\e533";}} 
+                &.messages {span::before {content: "\f0e0";}}    
+                &.articles {span::before {content: "\f8e7";}}       
+                &.users {span::before {content: "\f007";}}       
+                &.finances {span::before {content: "\f51e";}}       
+                &.moderation {span::before {content: "\f24e";}}       
+            }
+            .sbn-sub {
+                max-height: 0; overflow: hidden; transition: 0.3s;
+                &.active-1 {max-height: calc(1 * (40px + 3px));}  
+                &.active-2 {max-height: calc(2 * (40px + 3px));}  
+                &.active-3 {max-height: calc(3 * (40px + 3px));}  
+                &.active-4 {max-height: calc(4 * (40px + 3px));}     
+                &.active-5 {max-height: calc(5 * (40px + 3px));}     
+                &.active-6 {max-height: calc(6 * (40px + 3px));}  
+                &.active-7 {max-height: calc(7 * (40px + 3px));}  
+                &.active-8 {max-height: calc(8 * (40px + 3px));}  
+                &.active-9 {max-height: calc(9 * (40px + 3px));}     
+                &.active-10 {max-height: calc(10 * (40px + 3px));}     
+                &.active-11 {max-height: calc(11 * (40px + 3px));}     
+                &.active-12 {max-height: calc(12 * (40px + 3px));}     
+            }
+        }
+    }        
+}

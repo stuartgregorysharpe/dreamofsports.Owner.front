@@ -1,0 +1,19 @@
+<div class="fl" sortable [data]="data" itemClass="fl-item" handleClass="fl-item">
+    <div class="fl-item" *ngFor="let item of data; let i = index;">
+        <div class="fli-content">
+            <div class="fli-component" fl-item [item]="item" [folder]="folder" [type]="type" [supabase]="supabase"></div>
+        </div>
+        <div class="fli-dash">
+            <div *ngIf="type !== 'others'" class="roundbtn view" (click)="onView(i)" [title]="thelang.words['common-viewimg']"><span></span></div>
+            <div class="roundbtn download" (click)="onDownload(i)" ><span></span></div>
+            <div class="roundbtn danger delete" (click)="onDelete(i)" [title]="thelang.words['common-removeimg']"><span></span></div>
+        </div>
+    </div>
+    <div class="fl-item add">
+        <div class="fli-content" (click)="onSelect($event)" [class.active]="btnActive" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)">
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<image-viewer [url]="viewerImg" [type]="type" [(active)]="viewerActive"></image-viewer>

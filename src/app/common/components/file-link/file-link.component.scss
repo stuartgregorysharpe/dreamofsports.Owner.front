@@ -1,0 +1,5 @@
+.flc {
+    display: flex; align-items: center; width: 100%; overflow: hidden;
+    .roundbtn {margin: 0 5px 0 0;}
+    .flc-name {white-space: nowrap; text-overflow: ellipsis; width: calc(100% - 45px); overflow: hidden;}
+}

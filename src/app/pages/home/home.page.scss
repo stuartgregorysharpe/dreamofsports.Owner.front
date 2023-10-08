@@ -1,0 +1,60 @@
+.h-panels {
+    @media (min-width:0) {grid-template-columns: 1fr; }
+    @media (min-width:1000px) {grid-template-columns: 1fr 1fr;}  
+    display: grid; gap: 30px; margin: 0 auto; max-width: 1400px;
+    &.wide {grid-template-columns: 1fr; max-width: 1000px;}
+    .h-panel {
+        display: flex; flex-direction: column;
+        .hp-content {
+            @media (min-width:0) {padding: 30px 15px;}
+            @media (min-width:1000px) {padding: 30px 25px;}  
+            background-color: white; box-shadow: var(--shadow-small); border-radius: 10px; flex:1;
+            .hpc-menu {
+                display: flex; flex-wrap: wrap; gap: 15px;
+                a {
+                    display: flex; justify-content: center; align-items: center; width: 120px; height: 90px; padding: 10px; text-decoration: none; transition: 0.3s; color: var(--color-grey2); border-radius: 10px;
+                    &:hover {background-color: var(--color-violet-medium); color: white;}
+                    div {
+                        display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden;
+                        &::before {display: block; font-size: 36px; font-family: "fa-regular"; margin-bottom: 3px; }
+                        span {display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+                    }
+                    &.settings {div::before {content: "\f013";}}
+                    &.admins {div::before {content: "\f82d";}}
+                    &.langs {div::before {content: "\f1ab";}}
+                    &.wordbooks {div::before {content: "\f02d";}}
+                    &.pages {div::before {content: "\f15c";}}
+                    &.blog {div::before {content: "\f781";}}
+                    &.faq {div::before {content: "\f059";}}
+                    &.gals {div::before {content: "\f03e";}}
+                    &.files {div::before {content: "\f8a0";}} 
+                    &.baxers {div::before {content: "\e3c1";}}                        
+                    &.mailtemplates {div::before {content: "\f121";}}
+                    &.wsservers {div::before {content: "\f233";}}
+                    &.backups {div::before {content: "\f187";}}   
+                    &.users {div::before {content: "\f406";}}
+                    &.cats {div::before {content: "\f07b";}}
+                    &.cats2 {div::before {content: "\e18e";}}
+                    &.games {div::before {content: "\f11e";}}
+                    &.orders {div::before {content: "\f07a";}}
+                    &.discounts {div::before {content: "\f646";}}
+                    &.cars {div::before {content: "\f1b9";}}
+                    &.races {div::before {content: "\f85b";}}
+                    &.employees {div::before {content: "\e533";}}   
+                    &.messages {div::before {content: "\f0e0";}} 
+                    &.articles {div::before {content: "\f8e7";}}   
+                    &.countries {div::before {content: "\f024";}}   
+                    &.athlets {div::before {content: "\f554";}}   
+                    &.firms {div::before {content: "\f508";}}   
+                    &.socials {div::before {content: "\f2b5";}}   
+                    &.favorites {div::before {content: "\f005";}}   
+                    &.bans {div::before {content: "\f05e";}}   
+                    &.tariffs {div::before {content: "\f02b";}}   
+                    &.paysystems {div::before {content: "\f38a";}}   
+                    &.payments {div::before {content: "\f788";}}   
+                }
+            }            
+        }
+    }
+}
+

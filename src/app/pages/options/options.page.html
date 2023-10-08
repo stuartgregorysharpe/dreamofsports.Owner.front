@@ -1,0 +1,52 @@
+<div class="page-head">    
+    <div class="ph-title">
+        <div class="ph-h1">{{thelang.words["options-head"]}}</div>        
+    </div>   
+    <div class="ph-dash">        
+        <div class="ph-btn roundbtn violet save" (click)="update()" [title]="thelang.words['common-save']"><span></span></div>        
+    </div>    
+</div>
+
+<div class="page-content">
+    <form class="data-edit compact" (submit)="update();">
+        <div class="de-main">
+            <div class="generic-form">
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['options-lang']}}</label></div>
+                    <div class="gfp-inputwrap">
+                        <div class="selectwrap">
+                            <select name="thelangSlug" [(ngModel)]="temp.thelangSlug">
+                                <option *ngFor="let al of thelangs" [ngValue]="al.slug">{{al.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['options-chunk-length']}}</label></div>
+                    <div class="gfp-inputwrap">
+                        <div class="selectwrap">
+                            <select name="chunkLength" [(ngModel)]="temp.chunkLength">
+                                <option [ngValue]="10">10</option>
+                                <option [ngValue]="25">25</option>
+                                <option [ngValue]="50">50</option>
+                                <option [ngValue]="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="gf-param">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['options-monitor']}}</label></div>
+                    <div class="gfp-inputwrap"><check-box [(value)]="temp.monitorActive"></check-box></div>
+                </div>                 
+            </div>            
+        </div>
+        <div class="de-foot">
+            <div class="def-left">
+                
+            </div>
+            <div class="def-right">
+                <button type="submit" class="save"><span>{{thelang.words['common-save']}}</span></button>                         
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+<div class="sidebar" [class.active]="active">
+    <div class="sb-content">
+        <div class="sb-head">
+            <div class="sb-logo"><a routerLink="/"><img src="/assets/images/logo2.svg" alt="logo"></a></div>
+            <div class="sb-btns">
+                <menubtn-profile></menubtn-profile>
+            </div>        
+        </div>
+        <div class="sb-profile">
+            <div class="sb-imgwrap">
+                <div class="sb-img" [style.background-image]="admin?.img ? 'url(/images/admins/'+admin.img+')' : 'none'"><span *ngIf="!admin?.img">{{admin?.name[0]}}</span></div>                
+            </div>
+            <div class="sb-name">{{admin?.name}}</div>
+            <div class="sb-email">{{admin?.email}}</div>
+        </div>
+        <sidebar-menu></sidebar-menu>
+    </div>    
+    <div class="sb-overlay" (click)="active = false"></div>
+</div>

@@ -1,0 +1,59 @@
+<div class="auth">
+    <div class="auth-left">
+        <div class="auth-content">                        
+            <form class="generic-form" (submit)="recover()">
+                <ng-container *ngIf="!formSent">
+                    <div class="gf-logo b-margined3"><img src="/assets/images/logo2.svg" alt="logo"></div>
+                    <div class="gf-head b-margined5">
+                        <div class="gf-head1">{{thelang.words['recover-head']}}</div>                
+                        <div class="gf-head2">{{thelang.words['recover-head2']}}</div>                
+                        <div class="gf-head2">{{thelang.words['recover-remember']}}&nbsp;<a routerLink="/auth/login">{{thelang.words['recover-login']}}</a></div>                
+                    </div>  
+                    <div class="gf-param b-margined3">
+                        <div class="gfp-title b-margined1"><label class="required">{{thelang.words['recover-email']}}</label></div>
+                        <div class="gfp-inputwrap"><input type="email" name="email" [(ngModel)]="email" [class.error]="errors['email']"></div>
+                        <div class="gfp-error" *ngIf="errors['email']">{{thelang.words[errors['email']]}}</div>
+                    </div> 
+                    <div class="gf-param b-margined3">
+                        <div class="gf-2cols">
+                            <div class="gf-col">
+                                <div class="gfp-title b-margined1"><label class="required">{{thelang.words['recover-code']}}</label></div>
+                                <div class="gfp-inputwrap"><input type="text" name="code" [(ngModel)]="code" [class.error]="errors['code']"></div>
+                                <div class="gfp-error" *ngIf="errors['code']">{{thelang.words[errors['code']]}}</div> 
+                            </div>
+                            <div class="gf-col">
+                                <div class="gfp-title b-margined1">&nbsp;</div>
+                                <div class="gfp-btnwrap" *ngIf="!codeSent"><button type="button" class="code" [class.busy]="codeSending" (click)="verify()"><span>{{thelang.words['recover-sendcode']}}</span></button></div>
+                                <div class="gfp-inputwrap" *ngIf="codeSent"><div class="gfp-inputtext">{{thelang.words['recover-codesent']}}</div></div>                
+                            </div>
+                        </div>        
+                    </div> 
+                    <div class="gf-param b-margined3">
+                        <div class="gfp-title b-margined1"><label class="required">{{thelang.words['recover-password']}}</label></div>
+                        <div class="gfp-inputwrap"><input type="password" name="password" [(ngModel)]="password" [class.error]="errors['password']" [placeholder]="thelang.words['recover-password-ph']"></div>
+                        <div class="gfp-error" *ngIf="errors['password']">{{thelang.words[errors['password']]}}</div>
+                    </div>        
+                    <div class="gf-param b-margined5">
+                        <div class="gfp-title b-margined1"><label class="required">{{thelang.words['recover-password2']}}</label></div>
+                        <div class="gfp-inputwrap"><input type="password" name="password2" [(ngModel)]="password2" [class.error]="errors['password2']"></div>
+                        <div class="gfp-error" *ngIf="errors['password2']">{{thelang.words[errors['password2']]}}</div>
+                    </div>   
+                    <div class="gf-param b-margined6">
+                        <div class="gfp-btnwrap"><button type="submit" class="recover" [class.busy]="formSending"><span>{{thelang.words['recover-submit']}}</span></button></div>                        
+                    </div> 
+                </ng-container>
+                <ng-container *ngIf="formSent">
+                    <div class="gf-head b-margined3">
+                        <div class="gf-head2">{{thelang.words['recover-sent']}}</div>
+                    </div>    
+                    <div class="gf-param b-margined6">
+                        <div class="gfp-btnwrap"><button type="button" class="login" routerLink="/auth/login"><span>{{thelang.words['recover-login']}}</span></button></div>                        
+                    </div>                 
+                </ng-container>    
+            </form>            
+        </div>        
+    </div>
+    <div class="auth-right">
+        <div class="ar-bg"><img src="/assets/images/bg.svg"></div>
+    </div>
+</div>

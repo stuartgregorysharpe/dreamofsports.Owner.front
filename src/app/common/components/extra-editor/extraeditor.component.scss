@@ -1,0 +1,11 @@
+// win
+.pw-container.editor {
+    .pw-win {
+        @media (min-width:0) {width: 100%;}
+        @media (min-width:1000px) {width: 800px;}    
+        margin: auto; 
+        .pw-head {
+            .pw-title::before {content: "\f2d0";}
+        }
+    }
+}

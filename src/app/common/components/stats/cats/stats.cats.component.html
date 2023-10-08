@@ -1,0 +1,26 @@
+<div class="graph-round">
+    <div class="gr-main">
+        <div class="gr-sub">
+            <div class="gr-content">
+                <svg viewBox="0 0 100 100" [class.active]="ready">
+                    <circle cx="50" cy="50" r="50" fill="#cbd5e1"></circle>
+                    <path *ngFor="let cat of cats; let i = index;" [attr.d]="sector(i)" [attr.fill]="color(i)">
+                        <title>{{cat.name}} - {{cat.q}} ({{cat.percent}}%)</title>
+                    </path>
+                </svg>
+            </div>
+            <div class="gr-total">
+                <div class="grt-content">
+                    <div class="grt-title">{{thelang.words['stats-total']}}:</div>
+                    <div class="grt-value">{{total}}</div>
+                </div>                
+            </div>
+        </div>        
+    </div>
+    <div class="gr-legend">
+        <div class="grl-item" *ngFor="let c of cats; let i = index;" [class.active]="ready" [style.transition-delay]="0.1*i+'s'">
+            <div class="grl-mark" [style.background-color]="color(i)"></div>
+            <div class="grl-title">{{c.name}} - {{c.q}} ({{c.percent}}%)</div>
+        </div>        
+    </div>
+</div>

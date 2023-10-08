@@ -1,0 +1,90 @@
+.wrap {
+    display: flex; width:100%; height: 100%; overflow: hidden;            
+    main {
+        flex: 1; height: 100%; overflow: hidden;                
+        .win {
+            height: 100%; overflow: auto; position: relative;
+            &.padded {height: calc(100% - 60px);}            
+        }
+    }
+}
+
+.page-head {
+    @media (min-width:0) {padding: 0 15px; flex-direction: column; justify-content: center; align-items: flex-start;} 
+    @media (min-width:1000px) {padding: 0 25px; flex-direction: row; justify-content: space-between; align-items: center;}						
+    height: 100px; background-color: white; border-bottom: 1px var(--color-grey5) solid; display: flex;  position: relative;
+    .ph-title {
+        @media (min-width:0) {margin: 0 0 10px 0;}
+        @media (min-width:1000px) {margin: 0;}	
+        position: relative;
+        .ph-h1 {
+            @media (min-width:0) {font-size: 18px;}
+            @media (min-width:1000px) {font-size: 32px;}		
+            font-weight: bold; 
+        }
+        .ph-h2 {
+            @media (min-width:0) {display: none;}
+            @media (min-width:1000px) {display: block;}
+            font-weight: 500; color: var(--color-grey2);
+        }	
+    }
+    .ph-dash {
+        display: flex;      
+        .ph-btn {
+            @media (min-width:0) {margin: 0 10px 0 0;}
+            @media (min-width:1000px) {margin: 0 0 0 15px;}
+        }        
+    } 
+    .ph-loader {
+        position: absolute; height: 3px; width: 100%; bottom: 0; left: 0; background: linear-gradient(90deg, var(--color-violet-medium) 0%, var(--color-violet-medium) 40%, white 50%, var(--color-violet-medium) 60%, var(--color-violet-medium) 100%); background-size: 200% 100%; opacity: 0; transition: 0.3s;
+        &.active {opacity: 1; animation: animated-gradient 3s ease infinite;}
+    }   											
+}
+
+.page-content {
+    @media (min-width:0) {padding: 20px 15px;}
+    @media (min-width:1000px) {padding: 30px 25px;}								
+}
+
+.two-panels {
+    height: 100%; width: 100%; overflow: hidden; display: flex; position: relative; 
+    .tp-left {width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; transition: 0.3s; background-color: white;}
+    .tp-right {
+        @media (min-width:0) {position: absolute; width:100%; }
+        @media (min-width:1000px) {position: relative; width: 0;}									
+        height: 100%; overflow-y: auto; overflow-x: hidden; transition: 0.3s; left: 100%; background-color: white; border-left: 1px var(--color-grey5) solid;
+    }
+    &.splitted {
+        .tp-left {
+            @media (min-width:0) {width: 100%;}
+            @media (min-width:1000px) {width: 50%;}									
+        }
+        .tp-right {
+            @media (min-width:0) {width: 100%; }
+            @media (min-width:1000px) {width: 50%;}									
+            left: 0;
+        }
+    }
+}
+
+.wsidebar2 {
+    height: 100%; width: 100%; overflow: hidden; display: flex; position: relative; 
+    .wsb2-sidebar {
+        @media (min-width:0) {position: absolute;}
+        @media (min-width:1500px) {position: relative;}        
+        z-index: 11; width:0; height: 100%; transition: 0.3s; overflow: hidden;        
+        .wsb2-sb-content {position: absolute; height: 100%; width:280px; left: -280px; top: 0; overflow-y: auto; overflow-x: hidden; background-color: white; border-right: 1px var(--color-grey5) solid; transition: 0.3s;}        
+        &.active {
+            width:280px;
+            .wsb2-sb-content {left: 0;}
+        }
+    }
+    .wsb2-main {flex:1; height: 100%; overflow-y: auto; overflow-x: hidden;}
+    .wsb2-overlay {
+        z-index: 10; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: none;
+        &.active {
+            @media (min-width:0) {display: block;}
+            @media (min-width:1500px) {display: none;} 
+        }
+    }
+}

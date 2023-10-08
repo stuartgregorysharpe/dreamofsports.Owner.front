@@ -1,0 +1,60 @@
+<div class="page-head">    
+    <div class="ph-title">
+        <div class="ph-h1">{{thelang.words["settings-head"]}}</div>
+        <div class="ph-h2">{{thelang.words["common-length"]}}: {{elementsQuantity}}</div>    
+    </div>   
+    <div class="ph-dash" *ngIf="ready">
+        <div class="ph-btn roundbtn violet create" routerLink="{{homeUrl}}/create" [title]="thelang.words['common-create']"><span></span></div>
+        <div class="ph-btn roundbtn red delete" [class.disabled]="!canDeleteBulk" (click)="deleteBulk()" [title]="thelang.words['common-deleteselected']"><span></span></div>        
+    </div>
+    <div class="ph-loader" [class.active]="!ready || reloading"></div> 
+</div>
+
+<div class="list">
+    <div class="l-wrap">
+        <ng-container *ngIf="ready">
+            <div class="note"><span>{{thelang.words['settings-note']}}</span></div>
+            <table>
+                <tr class="no-selection">
+                    <th class="compact"><check-box [(value)]="allSelected" (valueChange)="onSelectAll()"></check-box></th>                        
+                    <th class="compact"><label [class.sorted-forward]="sortBy === 'id' && sortDir === 1" [class.sorted-backward]="sortBy === 'id' && sortDir === -1" (click)="changeSorting('id')">ID</label></th>
+                    <th>{{thelang.words['settings-loadto']}}</th>
+                    <th><label [class.sorted-forward]="sortBy === 'p' && sortDir === 1" [class.sorted-backward]="sortBy === 'p' && sortDir === -1" (click)="changeSorting('p')">{{thelang.words['settings-p']}}</label></th>
+                    <th><label [class.sorted-forward]="sortBy === 'v' && sortDir === 1" [class.sorted-backward]="sortBy === 'v' && sortDir === -1" (click)="changeSorting('v')">{{thelang.words['settings-v']}}</label></th>
+                    <th><label [class.sorted-forward]="sortBy === 'c' && sortDir === 1" [class.sorted-backward]="sortBy === 'c' && sortDir === -1" (click)="changeSorting('c')">{{thelang.words['settings-c']}}</label></th>
+                    <th><label [class.sorted-forward]="sortBy === 'pos' && sortDir === 1" [class.sorted-backward]="sortBy === 'pos' && sortDir === -1" (click)="changeSorting('pos')">{{thelang.words['settings-pos']}}</label></th>                        
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>  
+                <ng-container *ngIf="xl.length">
+                    <tr *ngFor="let x of xl">
+                        <td><check-box *ngIf="!x.defended" [(value)]="x.__selected" (valueChange)="onSelect()"></check-box></td>
+                        <td>{{x.id}}</td>
+                        <td>
+                            <div class="selectwrap">
+                                <select [(ngModel)]="x.load_to" (change)="updateParam(x, 'load_to')">
+                                    <option value="none">{{thelang.words['settings-loadto-none']}}</option>
+                                    <option value="all">{{thelang.words['settings-loadto-all']}}</option>
+                                    <option value="mainsite">{{thelang.words['settings-loadto-mainsite']}}</option>
+                                </select>
+                            </div>
+                        </td> 
+                        <td><input type="text" [(ngModel)]="x.p" (blur)="updateParam(x, 'p')"></td>                        
+                        <td><input type="text" [(ngModel)]="x.v" (blur)="updateParam(x, 'v')"></td>                        
+                        <td><input type="text" [(ngModel)]="x.c" (blur)="updateParam(x, 'c')"></td>                        
+                        <td><input type="number" class="small" [(ngModel)]="x.pos" (change)="updateParam(x, 'pos')"></td>                                                    
+                        <td>
+                            <div class="l-actions">                                    
+                                <a class="roundbtn danger delete" [title]="thelang.words['common-delete']" *ngIf="!x.defended" (click)="delete(x.id)"><span></span></a>                                
+                            </div>
+                        </td>
+                    </tr>                            
+                </ng-container> 
+                <ng-container *ngIf="!xl.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>                    
+            </table>  
+        </ng-container>                       
+    </div>
+    <div class="l-foot"><pagination [n]="pagesQuantity" [(current)]="part" (currentChange)="initList(true)"></pagination></div>    
+    <div class="l-loading" [class.active]="reloading"></div>  
+</div>

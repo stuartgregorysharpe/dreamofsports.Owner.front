@@ -1,0 +1,30 @@
+<div class="page-head">    
+    <div class="ph-title">
+        <div class="ph-h1">{{thelang.words["messages-head"]}} - {{thelang.words['common-edit']}}</div>        
+    </div>   
+    <div class="ph-dash" *ngIf="ready">
+        <div *ngIf="!x.defended" class="ph-btn roundbtn red delete" (click)="delete()" [title]="thelang.words['common-delete']"><span></span></div>  
+        <div class="ph-btn roundbtn violet cancel" [routerLink]="homeUrl" [title]="thelang.words['common-cancel']"><span></span></div>
+    </div>
+    <div class="ph-loader" [class.active]="!ready || reloading"></div> 
+</div>
+
+<div class="page-content">
+    <form *ngIf="ready" class="data-edit compact" (submit)="update();">
+        <div class="de-main">
+            <the-message                     
+                [x]="x"
+                [requiredFields]="requiredFields"      
+                [errors]="errors"                   
+            ></the-message>            
+        </div>
+        <div class="de-foot">
+            <div class="def-left">
+                <button *ngIf="!x.defended" type="button" class="danger delete" (click)="delete()"><span>{{thelang.words['common-delete']}}</span></button>
+            </div>
+            <div class="def-right">
+                <button type="button" class="neutral cancel" [routerLink]="homeUrl"><span>{{thelang.words['common-cancel']}}</span></button>            
+            </div>
+        </div>
+    </form>
+</div>

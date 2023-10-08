@@ -1,0 +1,7 @@
+.text-editor {
+    .te-inputwrap {
+        margin: 0 0 5px 0;
+        textarea {width: 100%; max-width: 100%; height: 340px;}
+    }
+    .te-error {color: var(--color-red); font-size: 11px; margin-top: 2px;}
+}

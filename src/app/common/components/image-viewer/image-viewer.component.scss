@@ -1,0 +1,15 @@
+// win
+.pw-container.viewer {
+    .pw-win {
+        @media (min-width:0) {width: 100%;}
+        @media (min-width:1000px) {width: 600px;}    
+        margin: auto; 
+        .pw-head {
+            .pw-title::before {content: "\f06e";}
+        }
+        .pw-main {
+            text-align: center; padding-bottom: 30px;
+            img, video {max-width: 100%;}        
+        }
+    }
+}

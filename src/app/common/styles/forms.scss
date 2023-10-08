@@ -1,0 +1,168 @@
+.generic-form {  
+    &.subform {max-height: 0; overflow: hidden; transition: 0.3s;}
+    .gf-subcontent {
+        @media (min-width:0) {padding: 15px;}
+        @media (min-width:1000px) {padding: 25px;}
+        background-color: var(--color-highlight1); margin-bottom: 30px;
+    }
+    .gf-logo {        
+        img {height: 50px;}
+    }
+    .gf-head {        
+        .gf-head1 {font-size: 32px; font-weight: bold;}
+        .gf-head2 {font-size: 14px; line-height: 22px; font-weight: 500;}
+    }
+    .gf-subhead {font-size: 16px; font-weight: bold;}
+    .gf-sectionhead {font-size: 14px; font-weight: 600;}
+    .gf-sectionhead2 {
+        height: 40px; display: flex;  justify-content: space-between; align-items: center;
+        .gfsh2-title {    
+            line-height: 20px;                    
+            .gfsh2-title1 {font-size: 14px; font-weight: 600;}
+            .gfsh2-title2 {font-size: 12px; color: var(--color-grey2);}
+        }
+        .gfsh2-btns {
+            display: flex;
+            .gfsh2-btn {margin-left: 10px;}            
+        }                    
+    }
+    .gf-2cols {
+        display: flex; justify-content: space-between;
+        .gf-col {width: calc(50% - 10px);}
+    }
+    .gf-param {
+        .gfp-title {
+            display: flex; justify-content: space-between;
+            &.error {color: var(--color-red);}
+            label.required::after {margin-left: 5px; color: var(--color-red); content: "*";}
+        }
+        .gfp-inputwrap {                        
+            .gfp-inputtext {height: 40px; line-height: 40px;} // просто надпись
+            input[type='text'], input[type='email'], input[type='password'], input[type='number'] {
+                width:100%; height: 100%; height: 40px;
+                &.small {width: 100px;}
+            }
+            textarea {
+                width:100%; height: 120px; -ms-overflow-style: none; scrollbar-width: none; 
+                &::-webkit-scrollbar {display: none;}
+            }
+            select[multiple] {height: 120px;}
+            .selectwrap {height: 40px;}
+            .select-simple {height: 40px;}
+            .buttonlink {
+                background-color: var(--color-highlight1); height: 40px; display: inline-flex; align-items: center; padding:0 15px; border-radius: 20px; color: var(--color-grey2); cursor: pointer; white-space: nowrap; overflow: hidden; user-select: none; text-decoration: none; 
+                &:hover {background-color: var(--color-highlight2);}    
+                span::before {font-family: "fa-regular"; margin-right: 5px; content: "\f0c1";}  
+                &.margined {margin: 0 5px 5px 0;}
+            }
+        }
+        .gfp-btnwrap {
+            button {
+                width:100%; height: 40px; border-radius: 25px;
+                &.thin {width: auto; padding: 0 15px;}
+            }
+        }
+        .gfp-error {color: var(--color-red); font-size: 11px; margin-top: 2px;}
+        .gfp-objectwrap {            
+            @media (min-width:0) {display: block;}
+            @media (min-width:1000px) {display: flex;}
+            align-items: center; width:100%; overflow: hidden;
+            .gfpo-container {
+                @media (min-width:0) {margin: 0 0 15px 0;}
+                @media (min-width:1000px) {margin: 0;}
+                flex: 1;
+                .gfpo-object {
+                    height: 40px; display: inline-flex; align-items: center; background-color: var(--color-highlight1); padding: 0 15px; border-radius: 20px; color: var(--color-grey2);
+                    .gfpo-title {white-space: nowrap;}
+                    .gfpo-innerbtns {
+                        display: flex;
+                        .roundbtn {
+                            width: 20px; height: 20px; border-radius: 10px; background-color: var(--color-grey3); color: white; margin-left: 5px; 
+                            &:first-child {margin-left: 10px;}
+                            &:hover {background-color: var(--color-grey2);}
+                            img {height: 11px; display: block;}
+                        }                        
+                    }
+                }
+            }
+            .gfpo-btns {
+                display: flex;
+                .gfpo-btn {
+                    margin-left: 10px;
+                    &:first-child {margin-left: 0;}                    
+                }
+            }
+        }
+    }
+    .gf-btnwrap {
+        button {height: 40px; padding: 0 15px; border-radius: 20px;}
+    }
+    .gf-2btnswrap {
+        display: flex; justify-content: space-between;
+        button {height: 40px; padding: 0 15px; border-radius: 20px;}
+    } 
+}
+
+.data-edit {
+    position: relative; 
+    textarea, input[type='text'], input[type='email'], input[type='password'], input[type='number'], .select-simple, .inputwithbtns {
+        @media (min-width:0) {max-width: 100%;}
+        @media (min-width:1000px) {max-width: 600px;}  
+        &.wide {max-width: 100%;}
+    }
+    &.compact {
+        @media (min-width:0) {width:100%;}
+        @media (min-width:1500px) {width:800px;}  
+        textarea, input[type='text'], input[type='email'], input[type='password'], input[type='number'], .select-simple, .inputwithbtns {max-width: 100%;}  
+    }
+    &.tiny {
+        @media (min-width:0) {width:100%;}
+        @media (min-width:1000px) {width:500px;}  
+        textarea, input[type='text'], input[type='email'], input[type='password'], input[type='number'], .select-simple, .inputwithbtns {max-width: 100%;}  
+    }
+    .de-main {
+        @media (min-width:0) {padding: 30px 15px;}
+        @media (min-width:1000px) {padding: 30px 25px;}  
+        background-color: white; box-shadow: var(--shadow-small); border-radius: 10px 10px 0 0; 
+        &.footless {border-radius: 10px;} 
+        ul.de-tabs {
+            list-style: none; margin: 0 0 10px 0; padding: 0; display: flex; flex-wrap: wrap;
+            li {
+                height: 40px; line-height: 40px; padding: 0 15px; font-weight: 500; cursor: pointer; border-radius: 20px; margin: 0 5px 5px 0; white-space: nowrap; transition: 0.3s; user-select: none;
+                span {
+                    display: flex; align-items: center; position: relative;
+                    &::before {font-size: 18px; font-family: "fa-regular"; content: ""; margin: 0 10px 0 0;}
+                }   
+                &.active {background-color: var(--color-highlight1); pointer-events: none;}
+                &:hover {background-color: var(--color-highlight2);}
+                &.params {span::before {content: "\f1c0";}}
+                &.related {span::before {content: "\f870";}}
+                &.words {span::before {content: "\41";}}
+                &.seo {span::before {content: "\f002";}}
+                &.cards {span::before {content: "\f38a";}}
+                &.users {span::before {content: "\e461";}}
+                &.games {span::before {content: "\f11e";}}
+                &.profile {span::before {content: "\f084";}}
+                &.resume {span::before {content: "\f65c";}}
+                &.contacts {span::before {content: "\e251";}}
+                &.images {span::before {content: "\f03e";}}
+                &.videos {span::before {content: "\f03d";}}
+                &.files {span::before {content: "\f15b";}}
+                &.rewards {span::before {content: "\f559";}}
+            }
+        }
+        .de-head {font-size: 16px; font-weight: bold;}
+        .de-dash {display: flex; justify-content: flex-end;} 
+    }          
+    .de-foot {
+        @media (min-width:0) {padding: 30px 15px;}
+        @media (min-width:1000px) {padding: 30px 25px;}       
+        border-top: 1px var(--color-grey5) solid; background-color: var(--color-bg-light);  display: flex; justify-content: space-between; border-radius: 0 0 10px 10px; box-shadow: var(--shadow-small);
+        button {height: 40px; padding: 0 15px; border-radius: 20px;}
+        .def-left {}
+        .def-right {
+            display: flex; flex-wrap: wrap; flex-direction: row-reverse;
+            button {margin: 0 0 10px 10px;}
+        }
+    }     
+}

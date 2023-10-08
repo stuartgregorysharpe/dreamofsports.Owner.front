@@ -1,0 +1,22 @@
+.auth {
+    width:100%; min-height: 100%; display: flex;
+    .auth-left {
+        @media (min-width:0) {width:100%; background-color: none; padding: 30px 15px;}
+        @media (min-width:1000px) {width:480px; background-color: white; padding: 60px;}
+        display: flex;        
+    }
+    .auth-right {
+        @media (min-width:0) {display: none;}
+        @media (min-width:1000px) {display: block;}
+        flex: 1; background-color: var(--color-blue-dark); position: relative;
+        .ar-bg {
+            position: absolute; left: 0; top: 0; width:100%; height: 100%;
+            img {width:100%; height: 100%; filter: invert(1); opacity: 0.05; display: block;}
+        }
+    }
+    .auth-content {
+        @media (min-width:0) {margin: 0;}
+        @media (min-width:1000px) {margin: auto 0;}
+        width:100%; 
+    }
+}

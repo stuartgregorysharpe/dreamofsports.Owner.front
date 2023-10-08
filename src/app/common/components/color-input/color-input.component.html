@@ -1,0 +1,6 @@
+<div class="inputwithbtns">
+    <input type="text" [ngModel]="value" readonly [style.background-color]="value">
+    <div class="iwb-btns"><div class="roundbtn color" (click)="pickerActive = true"><span></span></div></div>
+</div>   
+
+<color-picker [(active)]="pickerActive" [value]="value" (valueChange)="onValueChange($event)"></color-picker>

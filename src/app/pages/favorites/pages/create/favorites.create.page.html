@@ -1,0 +1,30 @@
+<div class="page-head">    
+    <div class="ph-title">
+        <div class="ph-h1">{{thelang.words["favorites-head"]}} - {{thelang.words['common-create']}}</div>        
+    </div>   
+    <div class="ph-dash" *ngIf="ready">
+        <div class="ph-btn roundbtn violet cancel" [routerLink]="homeUrl" [title]="thelang.words['common-cancel']"><span></span></div>
+        <div class="ph-btn roundbtn violet save" [class.disabled]="reloading" (click)="create()" [title]="thelang.words['common-save']"><span></span></div>        
+    </div>
+    <div class="ph-loader" [class.active]="!ready || reloading"></div> 
+</div>
+
+<div class="page-content">
+    <form *ngIf="ready" class="data-edit compact" (submit)="create();">
+        <div class="de-main">            
+            <the-favorite                     
+                [x]="x"
+                [requiredFields]="requiredFields"    
+                [errors]="errors"                     
+            ></the-favorite>          
+        </div>
+        <div class="de-foot">
+            <div class="def-left">                
+                <button type="button" class="neutral cancel" [routerLink]="homeUrl"><span>{{thelang.words['common-cancel']}}</span></button>
+            </div>
+            <div class="def-right">
+                <button type="submit" class="save" [class.busy]="reloading"><span>{{thelang.words['common-save']}}</span></button>                         
+            </div>
+        </div>
+    </form>
+</div>

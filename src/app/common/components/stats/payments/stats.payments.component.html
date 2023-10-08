@@ -1,0 +1,35 @@
+<div class="graph-area">
+    <div class="ga-params">
+        <div class="ga-param">
+            <div class="gap-title">{{thelang.words['common-year']}}:</div>
+            <div class="gap-value">
+                <div class="selectwrap">
+                    <select [(ngModel)]="year" (change)="initStats()">
+                        <option *ngFor="let y of years" [ngValue]="y">{{y}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="ga-main">
+        <div class="ga-max">{{max}}</div>
+        <div class="ga-graph">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="ga-payments-gradient" x1="0" x2="0" y1="1" y2="0">
+                        <stop offset="0" [attr.stop-color]="color(0)" stop-opacity="0" />
+                        <stop offset="1" [attr.stop-color]="color(0)" stop-opacity="1" />
+                    </linearGradient>
+                </defs>
+                <polyline class="line" [attr.points]="linePoints" [attr.stroke]="color(0)" vector-effect="non-scaling-stroke">
+                    <!-- здесь calcMode, keyTimes и keySplines задают функцию анимации, аналогичную ease -->
+                    <animate #animation attributeName="points" dur="0.3s" [attr.from]="prevPoints" [attr.to]="linePoints" calcMode="spline" keyTimes="0; 0.25; 0.5; 0.75; 1" keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1"></animate>
+                </polyline>
+                <polyline class="area" [attr.points]="areaPoints" [attr.fill]="'url(#ga-payments-gradient)'" [class.active]="!rebuilding"></polyline>
+            </svg>
+        </div>
+        <div class="ga-x">
+            <div class="gax-item" *ngFor="let m of months">{{m}}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="menubtn-btn profile roundbtn" [class.pressed]="active" (click)="onActivate()" #btnelement><span></span></div>
+<div class="menubtn-menu" [class.active]="active" [style.width]="menuWidth+'px'" [style.left]="menuLeft+'px'" [style.top]="menuTop+'px'">
+    <ul>
+        <li class="profile" routerLink="/admins/edit/{{admin_id}}" (click)="close()"><span>{{thelang.words["sidebar-top-profile"]}}</span></li>                          
+        <li class="logout" routerLink="/auth/logout"><span>{{thelang.words["sidebar-top-logout"]}}</span></li>                          
+    </ul>
+</div>
+<div class="menubtn-ovl" [class.active]="active" (click)="close()"></div>

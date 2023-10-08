@@ -1,0 +1,92 @@
+<ul class="de-tabs">
+    <li class="params" [class.active]="tab === 1" (click)="tab = 1;"><span>{{thelang.words['wordbooks-tab-params']}}</span></li>
+    <li class="words" [class.active]="tab === 2" (click)="tab = 2;"><span>{{thelang.words['wordbooks-tab-words']}}</span></li>
+</ul>
+
+<!-- tab 1 -->
+<ng-container *ngIf="tab === 1">
+    <div class="de-head b-margined3">{{thelang.words['wordbooks-tab-params']}}</div>
+    <div class="generic-form">        
+        <div class="gf-param b-margined3" *ngIf="x.id">
+            <div class="gfp-title b-margined1"><label>ID</label></div>
+            <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label [class.required]="isRequired('load_to')">{{thelang.words['wordbooks-loadto']}}</label></div>
+            <div class="gfp-inputwrap">
+                <div class="selectwrap">
+                    <select [(ngModel)]="x.load_to">
+                        <option value="none">{{thelang.words['wordbooks-loadto-none']}}</option>
+                        <option value="all">{{thelang.words['wordbooks-loadto-all']}}</option>
+                        <option value="mainsite">{{thelang.words['wordbooks-loadto-mainsite']}}</option>
+                    </select>
+                </div>                
+            </div>
+        </div>
+        <div class="gf-param b-margined3">
+            <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['wordbooks-name']}}</label></div>
+            <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.name" [class.error]="errors.name"></div>
+            <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>
+        </div>        
+        <div class="gf-param">
+            <div class="gfp-title b-margined1"><label [class.required]="isRequired('pos')">{{thelang.words['wordbooks-pos']}}</label></div>
+            <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.pos" [class.error]="errors.pos"></div>   
+            <div class="gfp-error" *ngIf="errors.pos">{{thelang.words[errors.pos]}}</div>
+        </div>
+    </div>    
+</ng-container>
+
+<!-- tab 2 -->
+<ng-container *ngIf="tab === 2">
+    <div class="de-head b-margined3">{{thelang.words['wordbooks-tab-words']}}</div>
+    <div class="b-margined3">
+        <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash b-margined3">
+        <div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="wordsAdd()"><span></span></div>
+    </div>
+    <!-- list -->
+    <div class="list inner b-margined3">
+        <div class="l-wrap">
+            <table>
+                <tr class="no-selection">            
+                    <th><label [class.sorted-forward]="wordsSortBy === 'mark' && wordsSortDir === 1" [class.sorted-backward]="wordsSortBy === 'mark' && wordsSortDir === -1" (click)="wordsChangeSorting('mark');">{{thelang.words['wordbooks-mark']}}</label></th>
+                    <th>{{thelang.words['wordbooks-text']}} ({{selectedLang.slug}})</th>
+                    <th>{{thelang.words['wordbooks-note']}}</th>
+                    <th><label [class.sorted-forward]="wordsSortBy === 'pos' && wordsSortDir === 1" [class.sorted-backward]="wordsSortBy === 'pos' && wordsSortDir === -1" (click)="wordsChangeSorting('pos');">{{thelang.words['wordbooks-pos']}}</label></th>            
+                    <th>{{thelang.words['common-actions']}}</th>
+                </tr>  
+                <ng-container *ngIf="x.words.length">
+                    <tr *ngFor="let w of x.words; let i = index;">            
+                        <td><input type="text" [(ngModel)]="w.mark"></td>
+                        <td>
+                            <div class="inputwithbtns">
+                                <input type="text" [(ngModel)]="w.translation(selectedLang.id).text" [dir]="selectedLang.dir">
+                                <div class="iwb-btns">
+                                    <div class="roundbtn editor" [title]="thelang.words['common-editor']" (click)="eeBind(w.translation(selectedLang.id), 'text');"><span></span></div>
+                                </div>
+                            </div>                      
+                        </td>
+                        <td><input type="text" [(ngModel)]="w.note"></td>
+                        <td><input class="small" type="number" [(ngModel)]="w.pos"></td>            
+                        <td>
+                            <div class="l-actions">                    
+                                <div class="roundbtn danger delete" [title]="thelang.words['common-delete']" (click)="wordsDelete(i);"><span></span></div>
+                            </div>
+                        </td>
+                    </tr>                            
+                </ng-container>
+                <ng-container *ngIf="!x.words.length">
+                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
+                </ng-container>  
+            </table>
+        </div>
+    </div>
+    <!-- btns --> 
+    <div class="de-dash">
+        <div class="ded-btn roundbtn violet create" [title]="thelang.words['common-create']" (click)="wordsAdd()"><span></span></div>
+    </div>
+</ng-container>
+        
+<extra-editor [(active)]="eeActive" [data]="eeData" (dataChange)="eeApply($event);" [dir]="selectedLang.dir"></extra-editor>     

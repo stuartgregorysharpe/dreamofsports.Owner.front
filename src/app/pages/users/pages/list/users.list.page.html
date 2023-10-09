@@ -1,14 +1,17 @@
-<div class="page-head">    
+<div class="page-head">
     <div class="ph-title">
         <div class="ph-h1">{{thelang.words["users-head"]}}</div>
-        <div class="ph-h2">{{thelang.words["common-length"]}}: {{elementsQuantity}}</div>    
-    </div>   
-    <div class="ph-dash" *ngIf="ready">
-        <div class="ph-btn roundbtn violet filter" [class.red]="filterActive" (click)="filterActive = !filterActive" [title]="thelang.words['common-filter']"><span></span></div>
-        <div class="ph-btn roundbtn violet create" routerLink="{{homeUrl}}/create" [title]="thelang.words['common-create']"><span></span></div>
-        <div class="ph-btn roundbtn red delete" [class.disabled]="!canDeleteBulk" (click)="deleteBulk()" [title]="thelang.words['common-deleteselected']"><span></span></div>        
+        <div class="ph-h2">{{thelang.words["common-length"]}}: {{elementsQuantity}}</div>
     </div>
-    <div class="ph-loader" [class.active]="!ready || reloading"></div> 
+    <div class="ph-dash" *ngIf="ready">
+        <div class="ph-btn roundbtn violet filter" [class.red]="filterActive" (click)="filterActive = !filterActive"
+            [title]="thelang.words['common-filter']"><span></span></div>
+        <div class="ph-btn roundbtn violet create" routerLink="{{homeUrl}}/create"
+            [title]="thelang.words['common-create']"><span></span></div>
+        <div class="ph-btn roundbtn red delete" [class.disabled]="!canDeleteBulk" (click)="deleteBulk()"
+            [title]="thelang.words['common-deleteselected']"><span></span></div>
+    </div>
+    <div class="ph-loader" [class.active]="!ready || reloading"></div>
 </div>
 
 <div class="list">
@@ -19,7 +22,8 @@
                     <div class="gf-subhead b-margined3">{{thelang.words['common-filter']}}</div>
                     <div class="gf-param b-margined3">
                         <div class="gf-title b-margined1">ID</div>
-                        <div class="gfp-inputwrap"><input type="number" class="small" name="id" [(ngModel)]="filter.id"></div>
+                        <div class="gfp-inputwrap"><input type="number" class="small" name="id" [(ngModel)]="filter.id">
+                        </div>
                     </div>
                     <div class="gf-param b-margined3">
                         <div class="gf-title b-margined1">{{thelang.words['users-type']}}</div>
@@ -39,15 +43,21 @@
                     </div>
                     <div class="gf-2btnswrap">
                         <button type="submit">{{thelang.words['common-apply']}}</button>
-                        <button type="button" class="danger" (click)="filterReset()" [disabled]="!filterChanged">{{thelang.words['common-reset']}}</button>
+                        <button type="button" class="danger" (click)="filterReset()"
+                            [disabled]="!filterChanged">{{thelang.words['common-reset']}}</button>
                     </div>
                 </form>
             </div>
             <table>
                 <tr class="no-selection">
-                    <th class="compact"><check-box [(value)]="allSelected" (valueChange)="onSelectAll()"></check-box></th>                        
-                    <th class="compact"><label [class.sorted-forward]="sortBy === 'id' && sortDir === 1" [class.sorted-backward]="sortBy === 'id' && sortDir === -1" (click)="changeSorting('id')">ID</label></th>
-                    <th><label [class.sorted-forward]="sortBy === 'created_at' && sortDir === 1" [class.sorted-backward]="sortBy === 'created_at' && sortDir === -1" (click)="changeSorting('created_at')">{{thelang.words['users-created-at']}}</label></th>
+                    <th class="compact"><check-box [(value)]="allSelected" (valueChange)="onSelectAll()"></check-box>
+                    </th>
+                    <th class="compact"><label [class.sorted-forward]="sortBy === 'id' && sortDir === 1"
+                            [class.sorted-backward]="sortBy === 'id' && sortDir === -1"
+                            (click)="changeSorting('id')">ID</label></th>
+                    <th><label [class.sorted-forward]="sortBy === 'created_at' && sortDir === 1"
+                            [class.sorted-backward]="sortBy === 'created_at' && sortDir === -1"
+                            (click)="changeSorting('created_at')">{{thelang.words['users-created-at']}}</label></th>
                     <th>{{thelang.words['users-type']}}</th>
                     <th>{{thelang.words['users-email']}}</th>
                     <th>{{thelang.words['users-active']}}</th>
@@ -55,26 +65,46 @@
                 </tr>
                 <ng-container *ngIf="xl.length">
                     <tr *ngFor="let x of xl">
-                        <td><check-box *ngIf="!x.defended" [(value)]="x.__selected" (valueChange)="onSelect()"></check-box></td>
+                        <td><check-box *ngIf="!x.defended" [(value)]="x.__selected"
+                                (valueChange)="onSelect()"></check-box></td>
                         <td>{{x.id}}</td>
                         <td>{{x.formattedDate('created_at', true)}}</td>
                         <td>{{thelang.words['users-type-'+x.type]}}</td>
-                        <td>{{x.email}}</td>    
+                        <td>{{x.email}}</td>
                         <td><check-box [(value)]="x.active" (valueChange)="updateParam(x, 'active')"></check-box></td>
                         <td>
-                            <div class="l-actions">   
-                                <a class="roundbtn edit" [title]="thelang.words['common-edit']" routerLink="{{homeUrl}}/edit/{{x.id}}"><span></span></a>                                 
-                                <a class="roundbtn danger delete" [title]="thelang.words['common-delete']" *ngIf="!x.defended" (click)="delete(x.id)"><span></span></a>                                
+                            <div class="l-actions">
+                                <a class="roundbtn edit" [title]="thelang.words['common-edit']"
+                                    routerLink="{{homeUrl}}/edit/{{x.id}}"><span></span></a>
+                                <a class="roundbtn danger delete" [title]="thelang.words['common-delete']"
+                                    *ngIf="!x.defended" (click)="delete(x.id)"><span></span></a>
+                                <a class="roundbtn download" [title]="thelang.words['common-download']"
+                                    (click)="downloadData(x)">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 16l4-4h-3V4h-2v8H8l4 4zM5 20v-2h14v2H5z" fill="currentColor" />
+                                    </svg>
+                                </a>
                             </div>
                         </td>
-                    </tr>     
-                </ng-container> 
+                    </tr>
+                </ng-container>
                 <ng-container *ngIf="!xl.length">
-                    <tr><td>{{thelang.words['common-empty']}}</td></tr>
-                </ng-container>                    
-            </table> 
-        </ng-container>                       
+                    <tr>
+                        <td>{{thelang.words['common-empty']}}</td>
+                    </tr>
+                </ng-container>
+            </table>
+        </ng-container>
     </div>
-    <div class="l-foot"><pagination [n]="pagesQuantity" [(current)]="part" (currentChange)="initList(true)"></pagination></div>    
-    <div class="l-loading" [class.active]="reloading"></div>  
+    <div class="l-foot">
+        <pagination [n]="pagesQuantity" [(current)]="part" (currentChange)="initList(true)"></pagination>
+    </div>
+    <div class="l-loading" [class.active]="reloading"></div>
 </div>
+
+<style>
+    .roundbtn.download {
+        background-color: #007BFF;
+        color: #fff;
+    }
+</style>

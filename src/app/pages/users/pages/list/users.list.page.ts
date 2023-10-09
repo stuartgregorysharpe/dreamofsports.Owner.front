@@ -37,6 +37,28 @@ export class CUsersListPage extends CListPage<CUser> implements OnInit {
         } catch (err) {
             this.appService.monitorLog(err, true);
         }
-    }    
+    }
+    public downloadData(user: any) {
+        let dataToDownload = [
+          ['ID', user.id],
+          ['Created At', user.created_at],
+          ['Type', user.type],
+          ['Email', user.email],
+          ['Active', user.active]
+          //... add other user fields as needed
+        ];
+      
+        let csvContent = dataToDownload.map(e => e.join(",")).join("\n");
+        let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        let downloadLink = document.createElement('a');
+        let url = URL.createObjectURL(blob);
+      
+        downloadLink.href = url;
+        downloadLink.download = 'userData.csv';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+          
 }
 

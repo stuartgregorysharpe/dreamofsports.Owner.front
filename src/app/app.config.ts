@@ -1,7 +1,7 @@
 export const cfg = {
     apiUrl: "https://back.dream-of-sports.com/api/owner",
     staticUrl: "https://static.dream-of-sports.com",
-    backupUrl: "https://backup.dream-of-sports.com",
+    backupUrl: "http://test.backup.dream-of-sports.com",
     supabaseUrl: "https://qqqjpngdspwjtashdlsa.supabase.co/storage/v1/object/public",
     maxImageFileSize: 10000000,
     maxVideoFileSize: 50000000,

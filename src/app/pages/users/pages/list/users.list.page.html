@@ -4,6 +4,11 @@
         <div class="ph-h2">{{thelang.words["common-length"]}}: {{elementsQuantity}}</div>
     </div>
     <div class="ph-dash" *ngIf="ready">
+        <button class="roundbtn downloadall" (click)="downloadAllUserData()">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 16l4-4h-3V4h-2v8H8l4 4zM5 20v-2h14v2H5z" fill="currentColor" />
+            </svg>
+        </button>
         <div class="ph-btn roundbtn violet filter" [class.red]="filterActive" (click)="filterActive = !filterActive"
             [title]="thelang.words['common-filter']"><span></span></div>
         <div class="ph-btn roundbtn violet create" routerLink="{{homeUrl}}/create"
@@ -104,7 +109,12 @@
 
 <style>
     .roundbtn.download {
-        background-color: #007BFF;
+        background-color: #919fad;
         color: #fff;
+    }
+    .roundbtn.downloadall {
+        background-color: #4b31dd;
+        color: #fff;
+        margin-right: 10px;
     }
 </style>

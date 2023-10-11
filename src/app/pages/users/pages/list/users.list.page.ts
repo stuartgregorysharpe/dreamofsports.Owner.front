@@ -5,6 +5,10 @@ import { CLangRepository } from 'src/app/common/services/repositories/lang.repos
 import { CUsersListService } from '../../services/users.list.service';
 import { CUserRepository } from 'src/app/common/services/repositories/user.repository';
 import { CUser } from 'src/app/model/entities/user';
+import { ExcelService } from 'src/app/common/services/excel.service';
+
+import * as XLSX from 'xlsx';
+
 
 @Component({
 	selector: 'users-list-page',
@@ -22,7 +26,8 @@ export class CUsersListPage extends CListPage<CUser> implements OnInit {
         protected userRepository: CUserRepository, 
         protected appService: CAppService,        
         protected listService: CUsersListService,  
-        protected langRepository: CLangRepository,      
+        protected langRepository: CLangRepository,    
+        private exelService: ExcelService,  
     ) 
     {      
         super(userRepository, appService, listService);
@@ -38,27 +43,50 @@ export class CUsersListPage extends CListPage<CUser> implements OnInit {
             this.appService.monitorLog(err, true);
         }
     }
-    public downloadData(user: any) {
+
+    public downloadData(user: any): void {
         let dataToDownload = [
-          ['ID', user.id],
-          ['Created At', user.created_at],
-          ['Type', user.type],
-          ['Email', user.email],
-          ['Active', user.active]
-          //... add other user fields as needed
+            ['ID', user.id],
+            ['Created At', user.created_at],
+            ['Type', user.type],
+            ['Email', user.email],
+            ['Active', user.active]
         ];
-      
-        let csvContent = dataToDownload.map(e => e.join(",")).join("\n");
-        let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    
+        const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(dataToDownload);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'UserData');
+    
+        const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    
+        const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+    
+        function s2ab(s: string): ArrayBuffer {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
+    
         let downloadLink = document.createElement('a');
         let url = URL.createObjectURL(blob);
       
         downloadLink.href = url;
-        downloadLink.download = 'userData.csv';
+        downloadLink.download = 'userData.xlsx';
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
     }
-          
+
+    public async exportToExcel() {
+        await this.exelService.exportToExcel(this.xlForCal, 'UsersList');
+    }
+    
+    public async downloadAllUserData() {
+        await this.getAllList();
+        await this.exportToExcel();
+    }
 }
 

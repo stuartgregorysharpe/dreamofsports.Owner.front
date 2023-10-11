@@ -8,39 +8,40 @@ import { CSomePage } from './some.page';
 export abstract class CListPage<T extends CEntity> extends CSomePage {
     public abstract homeUrl: string;
     public chunk: CChunk<T> = new CChunk();
+    public chunkForCal: CChunk<T> = new CChunk();
     public ready: boolean = false;
-    public reloading: boolean = false;    
-    public allSelected: boolean = false;  
-    
-    constructor(                
+    public reloading: boolean = false;
+    public allSelected: boolean = false;
+
+    constructor(
         protected repository: CRepository<T>,
         protected appService: CAppService,
         protected listService: CListService,
-    ) 
-    {
+    ) {
         super(appService);
     }
 
-    get part(): number {return this.listService.part;}
-    set part(v: number) {this.listService.part = v;}
-    get chunkLength(): number {return this.appService.options.chunkLength;}
-    get elementsQuantity(): number {return this.chunk.elementsQuantity;}   
-    get pagesQuantity(): number {return this.chunk.pagesQuantity;}    
-    get xl(): T[] {return this.chunk.data;}    
-    get sortBy(): string {return this.listService.sortBy;}
-    set sortBy(v: string) {this.listService.sortBy = v;}
-    get sortDir(): number {return this.listService.sortDir;}
-    set sortDir(v: number) {this.listService.sortDir = v;}    
-    get filter(): any {return this.listService.filter;}
-    get filterActive(): boolean {return this.listService.filterActive;}
-    set filterActive(v: boolean) {this.listService.filterActive = v;}
-    get filterChanged(): boolean {return this.listService.filterChanged();}
-    get canDeleteBulk(): boolean {return !!this.xl.filter(x => x.__selected).length;}    
+    get part(): number { return this.listService.part; }
+    set part(v: number) { this.listService.part = v; }
+    get chunkLength(): number { return this.appService.options.chunkLength; }
+    get elementsQuantity(): number { return this.chunk.elementsQuantity; }
+    get pagesQuantity(): number { return this.chunk.pagesQuantity; }
+    get xl(): T[] { return this.chunk.data; }
+    get xlForCal(): T[] { return this.chunkForCal.data; }
+    get sortBy(): string { return this.listService.sortBy; }
+    set sortBy(v: string) { this.listService.sortBy = v; }
+    get sortDir(): number { return this.listService.sortDir; }
+    set sortDir(v: number) { this.listService.sortDir = v; }
+    get filter(): any { return this.listService.filter; }
+    get filterActive(): boolean { return this.listService.filterActive; }
+    set filterActive(v: boolean) { this.listService.filterActive = v; }
+    get filterChanged(): boolean { return this.listService.filterChanged(); }
+    get canDeleteBulk(): boolean { return !!this.xl.filter(x => x.__selected).length; }
 
     public async initList(reloading: boolean = false): Promise<void> {
         try {
             this.reloading = reloading;
-            this.allSelected = false; 
+            this.allSelected = false;
             this.chunk = await this.repository.loadChunk(this.part, this.chunkLength, this.sortBy, this.sortDir, this.filter);
             this.appService.monitorLog(`data loaded, currentPart=${this.part}, sortBy=${this.sortBy}, sortDir=${this.sortDir}`);
 
@@ -49,14 +50,14 @@ export abstract class CListPage<T extends CEntity> extends CSomePage {
                 this.initList(reloading);
             } else {
                 await this.appService.pause(500);
-                this.reloading = false;               
-            } 
+                this.reloading = false;
+            }
         } catch (err) {
             this.appService.monitorLog(err, true);
             await this.appService.pause(500);
             this.reloading = false;
-        }        
-    }    
+        }
+    }
 
     public changeSorting(sortBy: string): void {
         if (this.sortBy === sortBy) {
@@ -68,46 +69,51 @@ export abstract class CListPage<T extends CEntity> extends CSomePage {
 
         this.initList(true);
     }
-    
-    public async updateParam (e: CEntity, p: string): Promise<void> {        
+
+    public async getAllList(): Promise<void> {
+        this.sortDir = 1;
+        this.chunkForCal = await this.repository.loadChunk(0, 1000000, 'id', this.sortDir, this.filter);
+    }
+
+    public async updateParam(e: CEntity, p: string): Promise<void> {
         try {
             this.appService.monitorLog(`updating entity: id=${e.id} param=${p} value=${e[p]}`);
-            await this.repository.updateParam(e.id, p, e[p]);            
-            this.appService.monitorLog("ok");            
+            await this.repository.updateParam(e.id, p, e[p]);
+            this.appService.monitorLog("ok");
         } catch (err) {
-            this.appService.monitorLog(`error: ${err}`, true);            
-        }        
-    }  
-    
-    public async updateMlParam (e: CEntity, p: string): Promise<void> {        
+            this.appService.monitorLog(`error: ${err}`, true);
+        }
+    }
+
+    public async updateMlParam(e: CEntity, p: string): Promise<void> {
         try {
             this.appService.monitorLog(`updating multilang entity: id=${e.id} param=${p} value=${e[p]}`);
-            await this.repository.updateMlParam(e.id, p, e[p]);            
-            this.appService.monitorLog("ok");            
+            await this.repository.updateMlParam(e.id, p, e[p]);
+            this.appService.monitorLog("ok");
         } catch (err) {
-            this.appService.monitorLog(`error: ${err}`, true);            
-        }        
-    }  
-    
+            this.appService.monitorLog(`error: ${err}`, true);
+        }
+    }
+
     // egoistic param:
     // В наборе сущностей только одна может иметь значение эгоистичного параметра, равное true.
     // Также параметр-эгоист может быть таковым в подмножествах (проекционно-эгоистичным), например, регионально-эгоистичный, 
     // т.е. среди объектов с region_id=N только один может иметь значение параметра-эгоиста, равное true,
     // для этого используется filter
-    public async updateEgoisticParam (e: CEntity, p: string, filter: any = {}): Promise<void> {        
+    public async updateEgoisticParam(e: CEntity, p: string, filter: any = {}): Promise<void> {
         try {
             if (e[p]) {
                 this.xl.filter(x => x.id !== e.id && Object.keys(filter).every(k => filter[k] === x[k])).forEach(x => {
                     x[p] = false;
                 });
-            }            
-            
+            }
+
             this.appService.monitorLog(`updating egoistic parameter: id=${e.id} param=${p} value=${e[p]}`);
-            await this.repository.updateEgoisticParam(e.id, p, e[p], filter);            
-            this.appService.monitorLog("ok");            
+            await this.repository.updateEgoisticParam(e.id, p, e[p], filter);
+            this.appService.monitorLog("ok");
         } catch (err) {
-            this.appService.monitorLog(`error: ${err}`, true);            
-        }        
+            this.appService.monitorLog(`error: ${err}`, true);
+        }
     }
 
     public async delete(id: number): Promise<void> {
@@ -115,13 +121,13 @@ export abstract class CListPage<T extends CEntity> extends CSomePage {
             if (confirm(this.thelang.words['common-sure'])) {
                 this.reloading = true;
                 this.appService.monitorLog(`deleting object: id=${id}`);
-                await this.repository.delete(id);                
+                await this.repository.delete(id);
                 this.appService.monitorLog("ok");
-                this.initList();                
-            }            
+                this.initList();
+            }
         } catch (err) {
-            this.appService.monitorLog(`error: ${err}`, true);       
-            this.reloading = false;    
+            this.appService.monitorLog(`error: ${err}`, true);
+            this.reloading = false;
         }
     }
 
@@ -131,9 +137,9 @@ export abstract class CListPage<T extends CEntity> extends CSomePage {
                 this.reloading = true;
                 let ids = this.xl.filter(x => x.__selected).map(x => x.id);
                 this.appService.monitorLog(`deleting multiple objects: id=${ids.toString()}`);
-                await this.repository.deleteBulk(ids);                
+                await this.repository.deleteBulk(ids);
                 this.appService.monitorLog("ok");
-                this.initList();                
+                this.initList();
             }
         } catch (err) {
             this.appService.monitorLog(`error: ${err}`, true);
@@ -165,12 +171,12 @@ export abstract class CListPage<T extends CEntity> extends CSomePage {
                 break;
             }
         }
-        
+
         this.allSelected = allSelected;
     }
 
     public onSelectAll(): void {
-        this.xl.filter(x => !x.defended).forEach(x => {x.__selected = this.allSelected});
+        this.xl.filter(x => !x.defended).forEach(x => { x.__selected = this.allSelected });
     }
 
     public filterReset(): void {
